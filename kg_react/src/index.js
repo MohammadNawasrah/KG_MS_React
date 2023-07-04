@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SuccessPage from './component/success_login';
 import FailurePage from './component/failed_login';
 
+// const root=ReactDOM.create
 ReactDOM.render(
   <Router>
     <Routes>
