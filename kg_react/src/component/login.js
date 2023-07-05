@@ -18,19 +18,15 @@ const LoginPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    try {
-      const response = await axios.post('http://localhost:8080/logins', { username, password });
-
-      if (response.status === 'Login successful') {
-        // useHistory.push("./success_login.js");
-        window.location.href = './success_login.js'; // Replace with your actual success page URL
-      } else {
-        // useHistory.push("./failed_login.js");
-        window.location.href = './failed_login.js'; // Replace with your actual failure page URL
-      }
-    } catch (error) {
-      console.log('Error:', error);
-    }
+    const response = await axios.post('http://localhost:8080/logins', { username, password });
+    console.log(response.data)
+          if (response.data === 'Login successful') {
+            // useHistory.push("./success_login.js");
+            window.location.href = '/success-page'; // Replace with your actual success page URL
+          } else if(response.data=== 'Invalid credentials') {
+            // useHistory.push("./failed_login.js");
+            window.location.href = '/failure-page'; // Replace with your actual failure page URL
+          }
   };
 
   return (
@@ -52,7 +48,7 @@ const LoginPage = () => {
                 type="text"
                 name="username"
                 id="inputUsername"
-                onSubmit={handleusernameChange}
+                onChange={handleusernameChange}
                 className="form-control userName"
                 placeholder="اسم المستخدم"
                 required
@@ -64,13 +60,13 @@ const LoginPage = () => {
                 type="password"
                 name="password"
                 id="inputPassword"
-                onSubmit={handlePasswordChange}
+                onChange={handlePasswordChange}
                 className="form-control password"
                 placeholder="الرقم السري"
                 required
               />
             </div>
-            <button className="upB" type="submit" name="login" data-toggle="collapse" href="#collapseExample">
+            <button className="upB" onClick={handleSubmit}  name="login" data-toggle="collapse" >
               دخول
             </button>
           </form>
