@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./CSS/login_style.css";
+
 import axios from 'axios';
 // import { useHistory } from 'react-router-dom';
 
@@ -20,58 +21,69 @@ const LoginPage = () => {
 
     const response = await axios.post('http://localhost:8080/logins', { username, password });
     console.log(response.data)
-          if (response.data === 'Login successful') {
-            // useHistory.push("./success_login.js");
-            window.location.href = '/success-page'; // Replace with your actual success page URL
-          } else if(response.data=== 'Invalid credentials') {
-            // useHistory.push("./failed_login.js");
-            window.location.href = '/failure-page'; // Replace with your actual failure page URL
-          }
+    if (response.data === 'Login successful') {
+      // useHistory.push("./success_login.js");
+      window.location.href = '/success-page'; // Replace with your actual success page URL
+    } else if (response.data === 'Invalid credentials') {
+      // useHistory.push("./failed_login.js");
+      window.location.href = '/failure-page'; // Replace with your actual failure page URL
+    }
   };
 
   return (
     <div>
-      <nav className="navbar">
-        <div className="col d-flex justify-content-center text-center colText text-white" style={{ flex: 5 }}>
-          اسم الروضه
-        </div>
-      </nav>
-      <form onSubmit={handleSubmit}>
-        <div className="container loginForm" id="loginForm">
-          <form action="/login" method="post">
-            <div className="text-center mb-5">
-              <h1 className="h3 mb-3 font-weight-normal textAlert">تسجيل الدخول</h1>
+      {/* Main Content */}
+      <div className="container-fluid">
+        <div className="row main-content bg-success text-center">
+          <div className="col-md-4 text-center company__info">
+            <span className="company__logo">
+              <h2>
+                <span className="fa fa-android"></span>
+              </h2>
+            </span>
+            {/* image */}
+            <h4 className="company_title">شعار الروضة</h4>
+          </div>
+          <div className="col-md-8 col-xs-12 col-sm-12 login_form ">
+            <div className="container-fluid">
+              <div className="row">
+                <h2 id='title text'>اسم الروضة</h2>
+              </div>
+              <div className="row">
+                <form onSubmit={handleSubmit} className="form-group">
+                    {/* username */}
+                  <div className="row" id='username'>
+                    <input
+                      onSubmit={handleusernameChange}
+                      type="text"
+                      name="username"
+                      id="username"
+                      className="form__input"
+                      placeholder="إسم المستخدم"
+                    />
+                  </div>
+                  {/* password */}
+                  <div className="row">
+                    <input
+                      onSubmit={handlePasswordChange}
+                      type="password"
+                      name="password"
+                      id="password"
+                      className="form__input"
+                      placeholder="كلمة المرور"
+                    />
+                  </div>
+                  {/* login button */}
+                  <div className="row" id="login">
+                    <button value="Submit" className="btn">تسجيل الدخول</button>
+                  </div>
+                </form>
+              </div>
             </div>
-            <div className="form-label-group">
+          </div>
+        </div>
+      </div>
 
-              <input
-                type="text"
-                name="username"
-                id="inputUsername"
-                onChange={handleusernameChange}
-                className="form-control userName"
-                placeholder="اسم المستخدم"
-                required
-                autoFocus
-              />
-            </div>
-            <div className="form-label-group mt-3">
-              <input
-                type="password"
-                name="password"
-                id="inputPassword"
-                onChange={handlePasswordChange}
-                className="form-control password"
-                placeholder="الرقم السري"
-                required
-              />
-            </div>
-            <button className="upB" onClick={handleSubmit}  name="login" data-toggle="collapse" >
-              دخول
-            </button>
-          </form>
-        </div>
-      </form>
     </div>
   );
 };
