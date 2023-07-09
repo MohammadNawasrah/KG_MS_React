@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import "./CSS/login_style.css";
+import "../static/css/login.css";
+import { failurePage, loginApiUrl, successPage } from "../core/data/static/staticData";
+import Button from "../widget/customButton";
 
 import axios from 'axios';
 // import { useHistory } from 'react-router-dom';
@@ -18,15 +20,14 @@ const LoginPage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const response = await axios.post('http://localhost:8080/logins', { username, password });
+    const response = await axios.post(loginApiUrl, { username, password });
     console.log(response.data)
     if (response.data === 'Login successful') {
       // useHistory.push("./success_login.js");
-      window.location.href = '/success-page'; // Replace with your actual success page URL
+      window.location.href = successPage; // Replace with your actual success page URL
     } else if (response.data === 'Invalid credentials') {
       // useHistory.push("./failed_login.js");
-      window.location.href = '/failure-page'; // Replace with your actual failure page URL
+      window.location.href = failurePage; // Replace with your actual failure page URL
     }
   };
 
@@ -51,10 +52,10 @@ const LoginPage = () => {
               </div>
               <div className="row">
                 <form onSubmit={handleSubmit} className="form-group">
-                    {/* username */}
+                  {/* username */}
                   <div className="row" id='username'>
                     <input
-                      onSubmit={handleusernameChange}
+                      onChange={handleusernameChange}
                       type="text"
                       name="username"
                       id="username"
@@ -65,7 +66,7 @@ const LoginPage = () => {
                   {/* password */}
                   <div className="row">
                     <input
-                      onSubmit={handlePasswordChange}
+                      onChange={handlePasswordChange}
                       type="password"
                       name="password"
                       id="password"
@@ -75,7 +76,8 @@ const LoginPage = () => {
                   </div>
                   {/* login button */}
                   <div className="row" id="login">
-                    <button value="Submit" className="btn">تسجيل الدخول</button>
+                    {/* <button onSubmit={handleSubmit} className="btn">تسجيل الدخول</button> */}
+                    <Button text="click" className="loginBtn" />
                   </div>
                 </form>
               </div>
