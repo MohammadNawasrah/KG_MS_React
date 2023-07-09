@@ -2,19 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import LoginPage from './component/login';
+import LoginPage from './page/login';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-import SuccessPage from './component/success_login';
-import FailurePage from './component/failed_login';
+import { successPage, loginPage, failurePage } from "./core/data/static/staticData";
+import SuccessPage from './page/success_login';
+import FailurePage from './page/failed_login';
 
 // const root=ReactDOM.create
 ReactDOM.render(
   <Router>
     <Routes>
-      <Route path="/" element={<LoginPage />} />
-      <Route path="/success-page" element={<SuccessPage />} />
-      <Route path="/failure-page" element={<FailurePage />} />
+      <Route path={loginPage} element={<LoginPage />} />
+      <Route path={successPage} element={<SuccessPage />} />
+      <Route path={failurePage} element={<FailurePage />} />
     </Routes>
   </Router>,
   document.getElementById('root')

@@ -1,0 +1,15 @@
+.btn {
+    transition: all .5s ease;
+    width: 70%;
+    border-radius: 30px;
+    color: #008080;
+    font-weight: 600;
+    background-color: #fff;
+    border: 1px solid #008080;
+}
+
+.btn:hover,
+.btn:focus {
+    background-color: #008080;
+    color: #fff;
+}
