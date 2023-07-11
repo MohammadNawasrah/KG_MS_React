@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-
+import withSessionTimeout from './core/functions/withSessionTimeout';
 
 function App() {
 
@@ -25,4 +25,4 @@ function App() {
   );
 }
 
-export default App;
+export default withSessionTimeout(app);
