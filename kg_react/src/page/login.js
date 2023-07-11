@@ -1,33 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "../static/css/login.css";
-import { failurePage, loginApiUrl, successPage } from "../core/data/static/staticData";
-import Button from "../widget/customButton";
+import splitAfterKeyword from '../core/functions/stringFunction';
+import { failurePage, loginApiUrl ,successPage } from "../core/data/static/staticData";
 
+import Button from "../widget/customButton";
 import axios from 'axios';
-// import { useHistory } from 'react-router-dom';
 
 const LoginPage = () => {
-  const [username, setusername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleusernameChange = (event) => {
-    setusername(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    var username=document.getElementById("username").value;
+    var password=document.getElementById("password").value;
+
     const response = await axios.post(loginApiUrl, { username, password });
-    console.log(response.data)
-    if (response.data === 'Login successful') {
-      // useHistory.push("./success_login.js");
-      window.location.href = successPage; // Replace with your actual success page URL
+
+    const name = splitAfterKeyword(response.data, "name");
+console.log(response.data)
+    if (response.data === 'success login name'+name) {
+      sessionStorage.setItem('loggedIn', 'ture');
+      sessionStorage.setItem('name',name)
+      window.location.href = successPage; 
     } else if (response.data === 'Invalid credentials') {
-      // useHistory.push("./failed_login.js");
-      window.location.href = failurePage; // Replace with your actual failure page URL
+      window.location.href = failurePage; 
     }
   };
 
@@ -53,11 +49,9 @@ const LoginPage = () => {
               <div className="row">
                 <form onSubmit={handleSubmit} className="form-group">
                   {/* username */}
-                  <div className="row" id='username'>
+                  <div className="row" >
                     <input
-                      onChange={handleusernameChange}
                       type="text"
-                      name="username"
                       id="username"
                       className="form__input"
                       placeholder="إسم المستخدم"
@@ -66,18 +60,14 @@ const LoginPage = () => {
                   {/* password */}
                   <div className="row">
                     <input
-                      onChange={handlePasswordChange}
                       type="password"
-                      name="password"
                       id="password"
                       className="form__input"
                       placeholder="كلمة المرور"
                     />
                   </div>
-                  {/* login button */}
                   <div className="row" id="login">
-                    {/* <button onSubmit={handleSubmit} className="btn">تسجيل الدخول</button> */}
-                    <Button text="click" className="loginBtn" />
+                    <Button text="دخول" className="loginBtn" />
                   </div>
                 </form>
               </div>
