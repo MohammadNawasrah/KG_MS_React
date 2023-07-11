@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { failurePage } from "../data/static/staticData";
+import { failurePage, timeEndsession } from "../data/static/staticData";
 const withSessionTimeout = (WrappedComponent) => {
   const SessionTimeout = () => {
-    const sessionTimeoutDuration = 30000; // 5 minutes
+    const sessionTimeoutDuration = timeEndsession; // 5 minutes
     const [sessionTimer, setSessionTimer] = useState(null);
 
     useEffect(() => {

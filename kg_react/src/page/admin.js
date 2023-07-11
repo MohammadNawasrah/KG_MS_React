@@ -1,7 +1,15 @@
 import React from 'react';
 import "../static/css/admin.css";
 import Navbar from "../widget/navbar";
-const Admin = () => {
+import withSessionTimeout from '../core/functions/withSessionTimeout';
+import {  loginPage } from '../core/data/static/staticData';
+const AdminPanel = () => {
+    
+  const msg = sessionStorage.getItem('loggedIn');
+//   const msg1 = sessionStorage.getItem('name');
+  if (msg !== "ture") {
+    window.location.href = loginPage; 
+  }
     return (
         <div className="container">
             <Navbar />
@@ -52,7 +60,7 @@ const Admin = () => {
     );
 
 };
-export default Admin;
+export default  withSessionTimeout(AdminPanel);
 
 
 
