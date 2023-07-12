@@ -8,3 +8,7 @@ export var loginApiUrl = `${protocol + host + port}/login`;
 export var successPage = '/successPage';
 export var loginPage = '/';
 export var failurePage = '/failurePage';
+export var adminPanel='/adminPanel';
+
+// session 
+export var timeEndsession=300000;

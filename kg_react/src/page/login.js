@@ -1,7 +1,7 @@
 import React from 'react';
 import "../static/css/login.css";
 import splitAfterKeyword from '../core/functions/stringFunction';
-import { failurePage, loginApiUrl ,successPage } from "../core/data/static/staticData";
+import { adminPanel, failurePage, loginApiUrl  } from "../core/data/static/staticData";
 
 import Button from "../widget/customButton";
 import axios from 'axios';
@@ -21,7 +21,7 @@ console.log(response.data)
     if (response.data === 'success login name'+name) {
       sessionStorage.setItem('loggedIn', 'ture');
       sessionStorage.setItem('name',name)
-      window.location.href = successPage; 
+      window.location.href = adminPanel; 
     } else if (response.data === 'Invalid credentials') {
       window.location.href = failurePage; 
     }
