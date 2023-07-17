@@ -1,7 +1,7 @@
 import React from 'react';
 import "../static/css/login.css";
 import splitAfterKeyword from '../core/functions/stringFunction';
-import { failurePage, loginApiUrl ,successPage } from "../core/data/static/staticData";
+import { adminPage, failurePage, loginApiUrl } from "../core/data/static/staticData";
 
 import Button from "../widget/customButton";
 import axios from 'axios';
@@ -11,19 +11,19 @@ const LoginPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    var username=document.getElementById("username").value;
-    var password=document.getElementById("password").value;
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
 
     const response = await axios.post(loginApiUrl, { username, password });
 
     const name = splitAfterKeyword(response.data, "name");
-console.log(response.data)
-    if (response.data === 'success login name'+name) {
+    console.log(response.data)
+    if (response.data === 'success login name' + name) {
       sessionStorage.setItem('loggedIn', 'ture');
-      sessionStorage.setItem('name',name)
-      window.location.href = successPage; 
+      sessionStorage.setItem('name', name)
+      window.location.href = adminPage;
     } else if (response.data === 'Invalid credentials') {
-      window.location.href = failurePage; 
+      window.location.href = failurePage;
     }
   };
 
@@ -31,7 +31,7 @@ console.log(response.data)
     <div>
       {/* Main Content */}
       <div className="container-fluid">
-        <div className="row main-content bg-success text-center">
+        <div className="row main-content text-center">
           <div className="col-md-4 text-center company__info">
             <span className="company__logo">
               <h2>

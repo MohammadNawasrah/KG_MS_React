@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { failurePage } from "../data/static/staticData";
+import {loginPage } from "../data/static/staticData";
 const withSessionTimeout = (WrappedComponent) => {
   const SessionTimeout = () => {
     const sessionTimeoutDuration = 30000; // 5 minutes
@@ -22,7 +22,7 @@ const withSessionTimeout = (WrappedComponent) => {
       // For example, clear session data, redirect to login page, etc.
       console.log('Session expired. Logging out...');
       sessionStorage.clear();
-      window.location.href = failurePage;
+      window.location.href = loginPage;
     };
 
     // Reset the session timer on user activity

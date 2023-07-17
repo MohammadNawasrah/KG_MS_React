@@ -8,3 +8,6 @@ export var loginApiUrl = `${protocol + host + port}/login`;
 export var successPage = '/successPage';
 export var loginPage = '/';
 export var failurePage = '/failurePage';
+export var adminPage = '/admin';
+// export var navbar = '/navbar';
+
