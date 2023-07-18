@@ -29,7 +29,7 @@ function Navbar() {
               <a class="nav-link active" aria-current="page" href={adminPage}>Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href={'/#'}>Teachers</a>
+              <a class="nav-link active" aria-current="page" href={"/#"}>Teachers</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href={'/#'}>Students</a>

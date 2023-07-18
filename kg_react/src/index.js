@@ -16,7 +16,6 @@ ReactDOM.render(
       <Route path={successPage} element={<SuccessPage />} />
       <Route path={failurePage} element={<FailurePage />} />
       <Route path={adminPage} element={<AdminPage />} />
-      {/* <Route path={navbar} element={<Navbar />}/> */}
     </Routes>
   </Router>,
   document.getElementById('root')
