@@ -1,0 +1,28 @@
+/* Dashboard */
+body {
+    background: #eee;
+}
+
+#add {
+    width: 180px;
+    margin: 25px;
+}
+
+.card-body {
+    display: flex;
+    padding-left: 39.7%;
+    align-items: center;
+    box-shadow: 10px 20px 27px 0 rgb(0 0 0 / 5%);
+    border: 0 solid rgba(0, 0, 0, .125);
+    border-radius: 1rem;
+
+}
+
+.avatar {
+    width: 3rem;
+    height: 3rem;
+}
+
+@media only screen and (min-width: 400px) {}
+
+@media only screen and (min-width: 250px) {}
