@@ -10,6 +10,7 @@ function Navbar() {
   }
 
   return (
+
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       {/* ... (rest of the component code) */}
       <div className="collapse navbar-collapse" id="navbarNav">

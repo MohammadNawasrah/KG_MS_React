@@ -9,3 +9,21 @@
 .nav-item {
     margin-left: 50px;
 }
+.nav-item :hover{
+    box-shadow: 0 20px black;
+    border-bottom-color: var(--logoTextColor-);
+	box-shadow: 0 0 5px rgba(141, 156, 156, 0.4);
+	border-radius: 4px;
+}
+@media only screen and (min-width: 400px) {
+    
+    .nav-link{
+        text-align: center;
+    }
+  }
+@media only screen and (min-width: 250px) {
+    
+    .nav-link{
+        text-align: center;
+    }
+  }

@@ -25,7 +25,6 @@ const App = () => (
       <Route path={loginPage} element={<LoginPage />} />
       <Route path={successPage} element={<SuccessPage />} />
       <Route path={failurePage} element={<FailurePage />} />
-
       <Route path={adminPanel} element={<AdminPanel />} />
       <Route path={addStudentPage} element={<AddStudent />} />
       <Route path={showStudentPage} element={<ShowStudent />} />
