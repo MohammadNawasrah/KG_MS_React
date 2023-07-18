@@ -4,7 +4,6 @@ import Navbar from "../widget/navbar";
 
 import withSessionTimeout from "../core/functions/withSessionTimeout";
 
-
 import {
   addStudentPage,
   loginPage,

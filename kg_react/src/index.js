@@ -16,12 +16,10 @@ import AdminPanel from "./page/admin";
 import AddStudent from "./page/addStudent";
 import ShowStudent from "./page/showStudent";
 
-const rootElement = document.getElementById("root");
-
-const App = () => (
+// const root=ReactDOM.create
+ReactDOM.render(
   <Router>
     <Routes>
-      <Route path={"/"} element={<LoginPage />} />
       <Route path={loginPage} element={<LoginPage />} />
       <Route path={successPage} element={<SuccessPage />} />
       <Route path={failurePage} element={<FailurePage />} />
@@ -29,7 +27,6 @@ const App = () => (
       <Route path={addStudentPage} element={<AddStudent />} />
       <Route path={showStudentPage} element={<ShowStudent />} />
     </Routes>
-  </Router>
+  </Router>,
+  document.getElementById("root")
 );
-
-ReactDOM.createRoot(rootElement).render(<App />);
