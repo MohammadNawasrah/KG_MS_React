@@ -11,6 +11,7 @@ export var studentDistributionApi =`${url}/admins/distribution`;
 export var successPage = '/successPage';
 export var loginPage = '/';
 export var failurePage = '/failurePage';
+export var adminPage = '/admin';
 export var adminPanel='/adminPanel';
 export var addStudentPage='/adminPanel/addStudent';
 export var showStudentPage='/adminPanel/showStudents';

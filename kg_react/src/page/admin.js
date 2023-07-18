@@ -1,7 +1,9 @@
+
 import React from 'react';
 import "../static/css/admin.css";
 import Navbar from "../widget/navbar";
 import withSessionTimeout from '../core/functions/withSessionTimeout';
+
 import {  addStudentPage, loginPage, showStudentPage, studentDistributionApi } from '../core/data/static/staticData';
 import handleFileUpload from '../core/functions/handleFileUpload';
 import axios from 'axios';
@@ -24,7 +26,9 @@ const AdminPanel = () => {
   };
     return (
         <div className="container">
-            <Navbar />
+                        <React.Fragment>
+                <Navbar />
+            </React.Fragment>
             <center><h3>administrator</h3></center>
             <div className="card mb-3" id='card'>
                 <div className="card-body">
@@ -59,6 +63,7 @@ const AdminPanel = () => {
                 <div className="card-body">
                     <div className="d-flex flex-column flex-lg-row">
                <button type="button" onClick={handleStudentDistribution}  class="btn btn-success" id='add'>توزيع الطلاب</button>
+
                     </div>
                 </div>
             </div>
@@ -66,6 +71,7 @@ const AdminPanel = () => {
     );
 
 };
+
 export default  withSessionTimeout(AdminPanel);
 
 

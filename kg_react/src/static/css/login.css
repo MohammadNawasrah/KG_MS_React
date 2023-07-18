@@ -1,5 +1,7 @@
 :root {
-	--logoTextColor-: #008080;
+	--logoTextColor-: #807b7bf8;
+	--BorderTopColor-: #ccc;
+	--BorderbuttomColor-: #ccc;
 }
 
 .main-content {
@@ -45,6 +47,7 @@ h2 {
 	.login_form {
 		border-top-left-radius: 20px;
 		border-bottom-left-radius: 20px;
+
 	}
 }
 
@@ -62,8 +65,8 @@ h2 {
 	background-color: #fff;
 	border-top-right-radius: 20px;
 	border-bottom-right-radius: 20px;
-	border-top: 1px solid #ccc;
-	border-right: 1px solid #ccc;
+	border-top: 1px solid --BorderTopColor-;
+	border-right: 1px solid --BorderbuttomColor-;
 }
 
 form {
@@ -83,8 +86,8 @@ form {
 }
 
 .form__input:focus {
-	border-bottom-color: #008080;
-	box-shadow: 0 0 5px rgba(0, 80, 80, .4);
+	border-bottom-color: var(--logoTextColor-);
+	box-shadow: 0 0 5px rgba(141, 156, 156, 0.4);
 	border-radius: 4px;
 }
 

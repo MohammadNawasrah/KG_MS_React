@@ -2,14 +2,14 @@
     transition: all .5s ease;
     width: 70%;
     border-radius: 30px;
-    color: #008080;
+    color: black;
     font-weight: 600;
     background-color: #fff;
-    border: 1px solid #008080;
+    border: 1px solid #807b7bf8;
 }
 
 .btn:hover,
 .btn:focus {
-    background-color: #008080;
+    background-color: #ccc;
     color: #fff;
 }
