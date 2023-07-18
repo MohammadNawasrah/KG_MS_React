@@ -1,48 +1,54 @@
-import React from 'react';
-import { loginPage } from '../core/data/static/staticData';
-import { adminPage } from '../core/data/static/staticData';
-import "../static/css/navbar.css";
+// ... (previous imports)
 
+import { adminPage, loginPage } from "../core/data/static/staticData";
 
 function Navbar() {
-  const loginSession = sessionStorage.getItem('loggedIn');
-  // const nameOfUser = sessionStorage.getItem('name');
-  if (loginSession === "ture") {
+  const loginSession = sessionStorage.getItem("loggedIn");
 
-  } else {
+  if (loginSession !== "true") {
     window.location.href = loginPage;
   }
 
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-ligth">
-      <div class='navbar-fluid'>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          <a class="navbar-brand">menu</a>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item1">
-              <a class="nav-link active" aria-current="page" id='hello-msg'><h5>wellcome user</h5></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href={adminPage}>Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href={'/#'}>Teachers</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href={'/#'}>Students</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href={loginPage}>Logout</a>
-            </li>
-          </ul>
-        </div>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      {/* ... (rest of the component code) */}
+      <div className="collapse navbar-collapse" id="navbarNav">
+        <ul className="navbar-nav">
+          <li className="nav-item1">
+            <a
+              className="nav-link active"
+              aria-current="page"
+              id="hello-msg"
+              href={adminPage}
+            >
+              <h5>welcome user</h5>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link active" aria-current="page" href={adminPage}>
+              Home
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link active" aria-current="page" href={loginPage}>
+              Teachers
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link active" aria-current="page" href={loginPage}>
+              Students
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link active" aria-current="page" href={loginPage}>
+              Logout
+            </a>
+          </li>
+        </ul>
       </div>
+      {/* ... (rest of the component code) */}
     </nav>
   );
-
-};
+}
 
 export default Navbar;
