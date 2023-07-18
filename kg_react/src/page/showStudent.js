@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import withSessionTimeout from '../core/functions/withSessionTimeout';
-import { addStudentApi, loginPage } from '../core/data/static/staticData';
+import React, { useState } from "react";
+import axios from "axios";
+import withSessionTimeout from "../core/functions/withSessionTimeout";
+import { addStudentApi } from "../core/data/static/staticData";
 
 async function fetchStudents() {
   try {
@@ -14,7 +14,6 @@ async function fetchStudents() {
 }
 
 function ShowStudents() {
-  const msg = sessionStorage.getItem('loggedIn');
   const [students, setStudents] = useState([]);
   fetchStudents().then(data => {
     setStudents(data);
