@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-const Failed = () => {
-  const msg = 'Login Failed';
-
+const Failed = props => {
+  const msg = "Login Failed";
+  console.log(JSON.parse(sessionStorage.getItem("data")));
   return (
     <div>
       <h1>{msg}</h1>

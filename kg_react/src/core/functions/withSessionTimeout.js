@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { failurePage } from "../data/static/staticData";
+import React, { useState, useEffect } from "react";
+import { loginPage } from "../data/static/staticData";
 
-const withSessionTimeout = (WrappedComponent) => {
+const withSessionTimeout = WrappedComponent => {
   const SessionTimeout = () => {
     const sessionTimeoutDuration = 1080000;
     const [sessionTimer, setSessionTimer] = useState(null);
 
     useEffect(() => {
       const logout = () => {
-        console.log('Session expired. Logging out...');
+        console.log("Session expired. Logging out...");
         sessionStorage.clear();
-        window.location.href = failurePage;
+        window.location.href = loginPage;
       };
 
       // Start the session timer
