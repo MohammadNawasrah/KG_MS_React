@@ -1,9 +1,11 @@
 var port = ':8088';
 var host = 'localhost';
 var protocol = "http://";
-export var loginApiUrl = `${protocol + host + port}/login`;
-export var addStudentApi = `${protocol + host + port}/students`;
+var url=`${protocol + host + port}`;
+export var loginApiUrl = `${url}/login`;
+export var addStudentApi = `${url}/students`;
 export var showStudentApi = addStudentApi;
+export var studentDistributionApi =`${url}/admins/distribution`;
 
 // react 
 export var successPage = '/successPage';
