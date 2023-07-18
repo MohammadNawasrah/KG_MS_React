@@ -6,6 +6,7 @@ import withSessionTimeout from "../core/functions/withSessionTimeout";
 
 import {
   addStudentPage,
+  addTeacher,
   loginPage,
   showStudentPage,
   studentDistributionApi,
@@ -13,6 +14,8 @@ import {
 import handleFileUpload from "../core/functions/handleFileUpload";
 import axios from "axios";
 const AdminPanel = () => {
+  const linkNames = ["add Teaher", "add Student", "show student data"];
+  const linkUrls = [addTeacher, addStudentPage, showStudentPage];
   const msg = sessionStorage.getItem("loggedIn");
   //   const msg1 = sessionStorage.getItem('name');
   if (msg !== "ture") {
@@ -28,10 +31,13 @@ const AdminPanel = () => {
     const response = await axios.post(studentDistributionApi);
     console.log(response.data);
   };
+  const handleAddTeacher = async event => {
+    window.location.href = addTeacher;
+  };
   return (
     <div className="container">
       <React.Fragment>
-        <Navbar />
+        <Navbar linkNames={linkNames} linkUrls={linkUrls} />
       </React.Fragment>
       <center>
         <h3>administrator</h3>
@@ -94,6 +100,20 @@ const AdminPanel = () => {
               id="add"
             >
               توزيع الطلاب
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="card mb-3" id="card">
+        <div className="card-body">
+          <div className="d-flex flex-column flex-lg-row">
+            <button
+              type="button"
+              onClick={handleAddTeacher}
+              className="btn btn-success"
+              id="add"
+            >
+              add teacher
             </button>
           </div>
         </div>

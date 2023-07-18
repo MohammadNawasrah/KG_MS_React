@@ -8,6 +8,7 @@ import {
   adminPanel,
   addStudentPage,
   showStudentPage,
+  addTeacher,
 } from "./core/data/static/staticData";
 import LoginPage from "./page/login";
 import SuccessPage from "./page/success_login";
@@ -15,6 +16,7 @@ import FailurePage from "./page/failed_login";
 import AdminPanel from "./page/admin";
 import AddStudent from "./page/addStudent";
 import ShowStudent from "./page/showStudent";
+import AddTeacher from "./page/addTeacher";
 
 // const root=ReactDOM.create
 ReactDOM.render(
@@ -26,6 +28,7 @@ ReactDOM.render(
       <Route path={adminPanel} element={<AdminPanel />} />
       <Route path={addStudentPage} element={<AddStudent />} />
       <Route path={showStudentPage} element={<ShowStudent />} />
+      <Route path={addTeacher} element={<AddTeacher />} />
     </Routes>
   </Router>,
   document.getElementById("root")

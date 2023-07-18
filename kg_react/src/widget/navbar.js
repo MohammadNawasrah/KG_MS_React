@@ -1,8 +1,7 @@
-// ... (previous imports)
+import React from "react";
+import { adminPanel } from "../core/data/static/staticData";
 
-import { adminPage, loginPage } from "../core/data/static/staticData";
-
-function Navbar() {
+function Navbar({ linkNames, linkUrls }) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       {/* ... (rest of the component code) */}
@@ -13,31 +12,22 @@ function Navbar() {
               className="nav-link active"
               aria-current="page"
               id="hello-msg"
-              href={adminPage}
+              href={adminPanel}
             >
               <h5>welcome user</h5>
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href={adminPage}>
-              Home
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href={loginPage}>
-              Teachers
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href={loginPage}>
-              Students
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href={loginPage}>
-              Logout
-            </a>
-          </li>
+          {linkNames.map((linkName, index) => (
+            <li className="nav-item" key={index}>
+              <a
+                className="nav-link active"
+                aria-current="page"
+                href={linkUrls[index]}
+              >
+                {linkName}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
       {/* ... (rest of the component code) */}
