@@ -1,28 +1,37 @@
-import React from 'react';
+import React from "react";
 import "../static/css/login.css";
-import splitAfterKeyword from '../core/functions/stringFunction';
-import { adminPage, failurePage, loginApiUrl } from "../core/data/static/staticData";
+import splitAfterKeyword from "../core/functions/stringFunction";
+import {
+  adminPanel,
+  failurePage,
+  loginApiUrl,
+} from "../core/data/static/staticData";
 
 import Button from "../widget/customButton";
-import axios from 'axios';
+import axios from "axios";
 
 const LoginPage = () => {
-
-  const handleSubmit = async (event) => {
+  const handleSubmit = async event => {
     event.preventDefault();
 
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
 
     const response = await axios.post(loginApiUrl, { username, password });
-
-    const name = splitAfterKeyword(response.data, "name");
-    console.log(response.data)
-    if (response.data === 'success login name' + name) {
-      sessionStorage.setItem('loggedIn', 'ture');
-      sessionStorage.setItem('name', name)
-      window.location.href = adminPage;
-    } else if (response.data === 'Invalid credentials') {
+    var name;
+    if (response.data["requestUsername"].includes("admin"))
+      name = splitAfterKeyword(response.data["requestUsername"], "admin");
+    else name = splitAfterKeyword(response.data["requestUsername"], "name");
+    console.log(response.data);
+    sessionStorage.setItem("loggedIn", "ture");
+    sessionStorage.setItem("name", name);
+    sessionStorage.setItem("data", JSON.stringify(response.data["students"]));
+    if (response.data["requestUsername"] === "success login admin" + name) {
+      window.location.href = adminPanel;
+    } else if (
+      response.data["requestUsername"] ===
+      "success login name" + name
+    ) {
       window.location.href = failurePage;
     }
   };
@@ -31,7 +40,7 @@ const LoginPage = () => {
     <div>
       {/* Main Content */}
       <div className="container-fluid">
-        <div className="row main-content text-center">
+        <div className="row main-content bg-success text-center">
           <div className="col-md-4 text-center company__info">
             <span className="company__logo">
               <h2>
@@ -44,12 +53,12 @@ const LoginPage = () => {
           <div className="col-md-8 col-xs-12 col-sm-12 login_form ">
             <div className="container-fluid">
               <div className="row">
-                <h2 id='title text'>اسم الروضة</h2>
+                <h2 id="title text">اسم الروضة</h2>
               </div>
               <div className="row">
                 <form onSubmit={handleSubmit} className="form-group">
                   {/* username */}
-                  <div className="row" >
+                  <div className="row">
                     <input
                       type="text"
                       id="username"
@@ -75,7 +84,6 @@ const LoginPage = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };

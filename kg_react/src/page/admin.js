@@ -3,60 +3,67 @@ import React from 'react';
 import "../static/css/admin.css";
 import Navbar from "../widget/navbar";
 import withSessionTimeout from '../core/functions/withSessionTimeout';
-import { loginPage } from '../core/data/static/staticData';
-const Admin = () => {
 
-    const lgoinSession = sessionStorage.getItem('loggedIn');
-    // const nameOfUser = sessionStorage.getItem('name');
-    if (lgoinSession === "ture") {
+import {  addStudentPage, loginPage, showStudentPage, studentDistributionApi } from '../core/data/static/staticData';
+import handleFileUpload from '../core/functions/handleFileUpload';
+import axios from 'axios';
+const AdminPanel = () => {
 
-    } else {
-        window.location.href = loginPage;
-    }
+  const msg = sessionStorage.getItem('loggedIn');
+//   const msg1 = sessionStorage.getItem('name');
+  if (msg !== "ture") {
+    window.location.href = loginPage; 
+  }
+  const handleAddStudentClick = () => {
+    window.location.href = addStudentPage;
+  };
+  const handleShowStudentClick = () => {
+    window.location.href = showStudentPage;
+  };
+  const handleStudentDistribution =async (event) => {
+    const response = await axios.post(studentDistributionApi);
+    console.log(response.data)
+  };
     return (
-        <div>
-            <React.Fragment>
+        <div className="container">
+                        <React.Fragment>
                 <Navbar />
             </React.Fragment>
-            <div className="container">
-                <center><h3>administrator</h3></center>
-                <div className="card mb-3" id='card'>
-                    <div className="card-body">
-                        <div className="d-flex flex-column flex-lg-row">
-                            <center>
-                                <button type="button" class="btn" id='add'>
-                                    إدخال مجموعة طلاب
-                                </button>
-                            </center>
-                        </div>
+            <center><h3>administrator</h3></center>
+            <div className="card mb-3" id='card'>
+                <div className="card-body">
+                    <div className="d-flex flex-column flex-lg-row">
+                        <center>
+                            <h4>
+                                إدخال جميع الطلاب
+                            </h4>
+                            <div class="row">
+                                <input type="file" class="form-control" id="stdEXL" onChange={handleFileUpload} />
+                                <button type="button" class="btn btn-success" id='add'>إدخال الكل</button>
+                            </div>
+                        </center>
                     </div>
                 </div>
-                <div className="card mb-3" id='card'>
-                    <div className="card-body">
-                        <div className="d-flex flex-column flex-lg-row">
-                            <center>
-                                <button type="button" class="btn" id='add'>معلومات الطلاب</button>
-                            </center>
-                        </div>
+            </div>
+            <div className="card mb-3" id='card'>
+                <div className="card-body">
+                    <div className="d-flex flex-column flex-lg-row">
+               <button type="button" onClick={handleAddStudentClick}  class="btn btn-success" id='add'>add student</button>
                     </div>
                 </div>
-                <div className="card mb-3" id='card'>
-                    <div className="card-body">
-                        <div className="d-flex flex-column flex-lg-row">
-                            <center>
-                                <button type="button" class="btn" id='add'>إضافة معلم</button>
-                            </center>
+            </div>
+            <div className="card mb-3" id='card'>
+                <div className="card-body">
+                    <div className="d-flex flex-column flex-lg-row">
+               <button type="button" onClick={handleShowStudentClick}  class="btn btn-success" id='add'>show student</button>
+                    </div>
+                </div>
+            </div>
+            <div className="card mb-3" id='card'>
+                <div className="card-body">
+                    <div className="d-flex flex-column flex-lg-row">
+               <button type="button" onClick={handleStudentDistribution}  class="btn btn-success" id='add'>توزيع الطلاب</button>
 
-                        </div>
-                    </div>
-                </div>
-                <div className="card mb-3" id='card'>
-                    <div className="card-body">
-                        <div className="d-flex flex-column flex-lg-row">
-                            <center>
-                                <button type="button" class="btn" id='add'>عرض المعلمين</button>
-                            </center>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -64,8 +71,8 @@ const Admin = () => {
     );
 
 };
-// export default Admin;
-export default withSessionTimeout(Admin);
+
+export default  withSessionTimeout(AdminPanel);
 
 
 
