@@ -7,17 +7,20 @@ import withSessionTimeout from "../core/functions/withSessionTimeout";
 import {
   addStudentPage,
   addTeacher,
+  adminPanel,
   loginPage,
   showStudentPage,
   studentDistributionApi,
 } from "../core/data/static/staticData";
 import handleFileUpload from "../core/functions/handleFileUpload";
 import axios from "axios";
+import controllNav from "../core/functions/controllerNav";
 const AdminPanel = () => {
-  const linkNames = ["add Teaher", "add Student", "show student data"];
-  const linkUrls = [addTeacher, addStudentPage, showStudentPage];
+  const pageName = adminPanel;
+  const filterLinks = controllNav(pageName);
+  const linksNames = filterLinks.linkNames;
+  const linkURLs = filterLinks.linkURLs;
   const msg = sessionStorage.getItem("loggedIn");
-  //   const msg1 = sessionStorage.getItem('name');
   if (msg !== "ture") {
     window.location.href = loginPage;
   }
@@ -37,7 +40,7 @@ const AdminPanel = () => {
   return (
     <div className="container">
       <React.Fragment>
-        <Navbar linkNames={linkNames} linkUrls={linkUrls} />
+        <Navbar linkNames={linksNames} linkUrls={linkURLs} />
       </React.Fragment>
       <center>
         <h3>administrator</h3>

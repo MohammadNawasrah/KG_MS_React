@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import withSessionTimeout from "../core/functions/withSessionTimeout";
-import { addStudentApi } from "../core/data/static/staticData";
+import { addStudentApi, showStudentPage } from "../core/data/static/staticData";
+import controllNav from "../core/functions/controllerNav";
+import Navbar from "../widget/navbar";
 
 async function fetchStudents() {
   try {
@@ -14,12 +16,17 @@ async function fetchStudents() {
 }
 
 function ShowStudents() {
+  const pageName = showStudentPage;
+  const filterLinks = controllNav(pageName);
+  const linksNames = filterLinks.linkNames;
+  const linkURLs = filterLinks.linkURLs;
   const [students, setStudents] = useState([]);
   fetchStudents().then(data => {
     setStudents(data);
   });
   return (
     <div>
+      <Navbar linkNames={linksNames} linkUrls={linkURLs}></Navbar>
       <h2>Student List</h2>
       <table>
         <thead>

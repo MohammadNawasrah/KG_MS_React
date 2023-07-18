@@ -1,20 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {
-  addStudentPage,
-  addTeacherApi,
-  adminPanel,
-  showStudentPage,
-} from "../core/data/static/staticData";
+import { addTeacher, addTeacherApi } from "../core/data/static/staticData";
 import Navbar from "../widget/navbar";
+import controllNav from "../core/functions/controllerNav";
 
 const AddTeacher = () => {
-  const linkNames = ["Home", "add Student", "show student data"];
-  const linkUrls = [adminPanel, addStudentPage, showStudentPage];
   const [teacherName, setTeacherName] = useState("");
   const [teacherUserName, setTeacherUserName] = useState("");
   const [teacherPassword, setTeacherPassword] = useState("");
-
+  const pageName = addTeacher;
+  const filterLinks = controllNav(pageName);
+  const linksNames = filterLinks.linkNames;
+  const linkURLs = filterLinks.linkURLs;
   const handleFormSubmit = async e => {
     e.preventDefault();
     const newTeacher = {
@@ -32,11 +29,10 @@ const AddTeacher = () => {
       alert("Failed to add teacher. Please check the console for details.");
     }
   };
-
   return (
     <div>
       <React.Fragment>
-        <Navbar linkNames={linkNames} linkUrls={linkUrls} />
+        <Navbar linkNames={linksNames} linkUrls={linkURLs} />
       </React.Fragment>
       <h2>Add Teacher</h2>
       <form onSubmit={handleFormSubmit}>

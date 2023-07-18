@@ -3,8 +3,7 @@ import { adminPanel } from "../core/data/static/staticData";
 
 function Navbar({ linkNames, linkUrls }) {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      {/* ... (rest of the component code) */}
+    <nav dir="rtl" className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
           <li className="nav-item1">
@@ -14,7 +13,7 @@ function Navbar({ linkNames, linkUrls }) {
               id="hello-msg"
               href={adminPanel}
             >
-              <h5>welcome user</h5>
+              <h5>اهلا {sessionStorage.getItem("name")} </h5>
             </a>
           </li>
           {linkNames.map((linkName, index) => (
@@ -30,7 +29,6 @@ function Navbar({ linkNames, linkUrls }) {
           ))}
         </ul>
       </div>
-      {/* ... (rest of the component code) */}
     </nav>
   );
 }
