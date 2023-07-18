@@ -1,5 +1,5 @@
 var port = ":8088";
-var host = "localhost";
+var host = "192.168.1.3";
 var protocol = "http://";
 var url = `${protocol + host + port}`;
 export var loginApiUrl = `${url}/login`;
@@ -7,6 +7,7 @@ export var addStudentApi = `${url}/students`;
 export var showStudentApi = addStudentApi;
 export var studentDistributionApi = `${url}/admins/distribution`;
 export var addTeacherApi = `${url}/teachers`;
+export var updateAttendance = `${url}/attendance/updateAttendance`;
 
 // react
 export var successPage = "/successPage";

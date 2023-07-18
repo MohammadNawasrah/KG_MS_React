@@ -9,7 +9,7 @@ import {
 
 import Button from "../widget/customButton";
 import axios from "axios";
-
+import logo from "../static/img/test.png";
 const LoginPage = () => {
   const handleSubmit = async event => {
     event.preventDefault();
@@ -47,13 +47,12 @@ const LoginPage = () => {
                 <span className="fa fa-android"></span>
               </h2>
             </span>
-            {/* image */}
-            <h4 className="company_title">شعار الروضة</h4>
+            <img src={logo} alt="logo"></img>
           </div>
           <div className="col-md-8 col-xs-12 col-sm-12 login_form ">
             <div className="container-fluid">
               <div className="row">
-                <h2 id="title text">اسم الروضة</h2>
+                <h2 id="title text">طلائع الامل</h2>
               </div>
               <div className="row">
                 <form onSubmit={handleSubmit} className="form-group">
