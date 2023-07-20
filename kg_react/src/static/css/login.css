@@ -1,5 +1,5 @@
 :root {
-	--logoTextColor-: #807b7bf8;
+	--logoTextColor-: black;
 	--BorderTopColor-: #ccc;
 	--BorderbuttomColor-: #ccc;
 }
@@ -11,7 +11,9 @@
 	margin: 5em auto;
 	display: flex;
 }
-
+img{
+	border-radius: 100%;
+}
 .company__info {
 	background-color: var(--logoTextColor-);
 	border-top-left-radius: 20px;
