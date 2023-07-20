@@ -8,14 +8,27 @@ body {
     margin: 25px;
 }
 
+#stdEXL {
+    height: 35px;
+    width: 120%;
+    margin-left: -50px;
+
+}
+
+
 .card-body {
-    display: flex;
     padding-left: 39.7%;
     align-items: center;
+    align-content: center;
     box-shadow: 10px 20px 27px 0 rgb(0 0 0 / 5%);
     border: 0 solid rgba(0, 0, 0, .125);
     border-radius: 1rem;
 
+
+}
+
+.btn {
+    margin-right: 50%;
 }
 
 .avatar {

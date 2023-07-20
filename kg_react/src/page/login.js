@@ -40,7 +40,7 @@ const LoginPage = () => {
     <div>
       {/* Main Content */}
       <div className="container-fluid">
-        <div className="row main-content bg-success text-center">
+        <div className="row main-content text-center">
           <div className="col-md-4 text-center company__info">
             <span className="company__logo">
               <h2>
