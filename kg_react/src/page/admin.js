@@ -38,72 +38,72 @@ const AdminPanel = () => {
     window.location.href = addTeacher;
   };
   return (
-    <div className="container">
+    <div>
       <React.Fragment>
         <Navbar linkNames={linksNames} linkUrls={linkURLs} />
       </React.Fragment>
-      <center>
-        <h3>administrator</h3>
-      </center>
-      <div className="card mb-3" id="card">
-        <div className="card-body">
-          <div className="d-flex flex-column flex-lg-row">
-            <center>
-              <h4>إدخال جميع الطلاب</h4>
-              <div className="row">
+      <div className="container">
+        <center>
+          <h3>administrator</h3>
+        </center>
+        <div className="card mb-3" id="card">
+          <div className="card-body">
+            <div className="d-flex flex-column flex-lg-row">
+
+              {/* <h4>إدخال جميع الطلاب</h4> */}
+              <div id="row">
                 <input
                   type="file"
                   className="form-control"
                   id="stdEXL"
                   onChange={handleFileUpload}
                 />
-                <button type="button" className="btn btn-success" id="add">
-                  إدخال الكل
+                <button type="button" className="btn" id="add">
+                  رفع ملف الطلاب
                 </button>
               </div>
-            </center>
+
+            </div>
           </div>
         </div>
-      </div>
-      <div className="card mb-3" id="card">
-        <div className="card-body">
-          <div className="d-flex flex-column flex-lg-row">
+        <div className="card mb-3" id="card">
+          <div className="card-body">
             <button
               type="button"
               onClick={handleAddStudentClick}
-              className="btn btn-success"
+              className="btn"
               id="add"
             >
               add student
             </button>
           </div>
         </div>
-      </div>
-      <div className="card mb-3" id="card">
-        <div className="card-body">
-          <div className="d-flex flex-column flex-lg-row">
-            <button
-              type="button"
-              onClick={handleShowStudentClick}
-              className="btn btn-success"
-              id="add"
-            >
-              show student
-            </button>
+        <div className="card mb-3" id="card">
+          <div className="card-body">
+            <div className="d-flex flex-column flex-lg-row">
+              <button
+                type="button"
+                onClick={handleShowStudentClick}
+                className="btn"
+                id="add"
+              >
+                show student
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="card mb-3" id="card">
-        <div className="card-body">
-          <div className="d-flex flex-column flex-lg-row">
-            <button
-              type="button"
-              onClick={handleStudentDistribution}
-              className="btn btn-success"
-              id="add"
-            >
-              توزيع الطلاب
-            </button>
+        <div className="card mb-3" id="card">
+          <div className="card-body">
+            <div className="d-flex flex-column flex-lg-row">
+              <button
+                type="button"
+                onClick={handleStudentDistribution}
+                className="btn"
+                id="add"
+              >
+                توزيع الطلاب
+              </button>
+            </div>
           </div>
         </div>
       </div>
