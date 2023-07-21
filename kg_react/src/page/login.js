@@ -23,7 +23,7 @@ const LoginPage = () => {
       name = splitAfterKeyword(response.data["requestUsername"], "admin");
     else name = splitAfterKeyword(response.data["requestUsername"], "name");
     console.log(response.data);
-    sessionStorage.setItem("loggedIn", "true");
+    sessionStorage.setItem("loggedIn", "ture");
     sessionStorage.setItem("name", name);
     sessionStorage.setItem("data", JSON.stringify(response.data["students"]));
     if (response.data["requestUsername"] === "success login admin" + name) {
