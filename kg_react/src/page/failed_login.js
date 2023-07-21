@@ -1,12 +1,38 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { updateAttendance } from "../core/data/static/staticData";
+import {
+  getIsLogin,
+  getStudentsForEachTeacher,
+  loginPage,
+  removeLogin,
+  updateAttendance,
+} from "../core/data/static/staticData";
 
 const Failed = () => {
-  const students = JSON.parse(sessionStorage.getItem("data"));
-  const [checkedStudents, setCheckedStudents] = useState(
-    students.map(student => ({ studentId: student.studentId, checked: false }))
-  );
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [students, setStudents] = useState([]);
+  const urlParams = new URLSearchParams(window.location.search);
+  const teacherUserName = urlParams.get("name");
+  const [checkedStudents, setCheckedStudents] = useState([]);
+  const [isLoginChecked, setIsLoginChecked] = useState(false);
+
+  async function checkLoginStatus() {
+    try {
+      const response = await axios.get(
+        getIsLogin + `?teacherUserName=${teacherUserName}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error checking login status:", error);
+      return false;
+    }
+  }
+
+  function handleLogout() {
+    setIsLoggedIn(false);
+    axios.post(removeLogin + `?teacherUserName=${teacherUserName}`);
+    window.location.href = loginPage;
+  }
 
   const handleCheckboxChange = async studentId => {
     setCheckedStudents(prevCheckedStudents =>
@@ -34,32 +60,50 @@ const Failed = () => {
       console.error("Error sending data to API:", error);
     }
   };
-  useEffect(() => {
-    const setAllStudentsAsAttend = async () => {
-      try {
-        // Loop through all students and send the "ATTEND" status to the API
-        for (const student of students) {
-          await axios.post(updateAttendance, {
-            studentId: student.studentId,
-            attendanceStatus: "ATTEND",
-          });
-        }
 
-        // Update the local state to set all students as "ATTEND"
-        setCheckedStudents(prevCheckedStudents =>
-          prevCheckedStudents.map(student => ({
+  useEffect(() => {
+    async function fetchData() {
+      const isLoggedIn = await checkLoginStatus();
+      setIsLoggedIn(isLoggedIn);
+      setIsLoginChecked(true);
+    }
+
+    fetchData();
+  }, [teacherUserName]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const studentsData = await axios.post(
+          getStudentsForEachTeacher + `?teacherUserName=${teacherUserName}`
+        );
+        const fetchedStudents = studentsData.data["students"];
+        setStudents(fetchedStudents);
+
+        // Initialize checkedStudents state with default values based on fetched students
+        setCheckedStudents(
+          fetchedStudents.map(student => ({
             studentId: student.studentId,
-            checked: false,
+            checked: !isLoginChecked, // Set default attendance to "ATTEND" when login status is checked
           }))
         );
       } catch (error) {
-        console.error("Error sending data to API:", error);
+        console.error("Error fetching students data:", error);
       }
-    };
+    }
 
-    setAllStudentsAsAttend();
-  }, []);
-  return (
+    if (isLoginChecked) {
+      // Fetch student data only after login status is checked
+      fetchData();
+    }
+  }, [teacherUserName, isLoginChecked]);
+
+  if (!isLoginChecked) {
+    // Show a loading message or spinner until the login status is checked
+    return <div>Loading...</div>;
+  }
+
+  return isLoggedIn ? (
     <div className="table-responsive">
       <table className="table table-bordered">
         <thead>
@@ -70,14 +114,14 @@ const Failed = () => {
           </tr>
         </thead>
         <tbody>
-          {checkedStudents.map((student, index) => (
+          {students.map((student, index) => (
             <tr key={index}>
-              <td>{index + 1}</td>
-              <td>{students[index].studentName}</td>
+              <td>{student.studentId}</td>
+              <td>{student.studentName}</td>
               <td>
                 <input
                   type="checkbox"
-                  checked={student.checked}
+                  // checked={checkedStudents[index].checked}
                   onChange={() => handleCheckboxChange(student.studentId)}
                 />
               </td>
@@ -85,7 +129,10 @@ const Failed = () => {
           ))}
         </tbody>
       </table>
+      <button onClick={handleLogout}>Save</button>
     </div>
+  ) : (
+    <div>Please log in to view the students' data.</div>
   );
 };
 
