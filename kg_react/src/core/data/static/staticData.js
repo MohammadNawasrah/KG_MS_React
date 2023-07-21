@@ -12,7 +12,7 @@ export var lastDateUpdate = `${url}/attendance/lastDateUpdate`;
 export var removeLogin = `${url}/teachers/removeLogin`;
 export var getIsLogin = `${url}/teachers/getIsLogin`;
 export var getStudentsForEachTeacher = `${url}/teachers/getStudent`;
-
+export var getAllTeachers = `${url}/teachers/getTeachers`;
 // react
 export var successPage = "/successPage";
 export var loginPage = "/";
