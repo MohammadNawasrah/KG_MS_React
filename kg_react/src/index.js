@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   successPage,
   loginPage,
-  failurePage,
+  attendancePage,
   adminPanel,
   addStudentPage,
   showStudentPage,
@@ -12,7 +12,7 @@ import {
 } from "./core/data/static/staticData";
 import LoginPage from "./page/login";
 import SuccessPage from "./page/success_login";
-import FailurePage from "./page/failed_login";
+import AttendancePage from "./page/attendancePage";
 import AdminPanel from "./page/admin";
 import AddStudent from "./page/addStudent";
 import ShowStudent from "./page/showStudent";
@@ -24,7 +24,7 @@ ReactDOM.render(
     <Routes>
       <Route path={loginPage} element={<LoginPage />} />
       <Route path={successPage} element={<SuccessPage />} />
-      <Route path={failurePage} element={<FailurePage />} />
+      <Route path={attendancePage} element={<AttendancePage />} />
       <Route path={adminPanel} element={<AdminPanel />} />
       <Route path={addStudentPage} element={<AddStudent />} />
       <Route path={showStudentPage} element={<ShowStudent />} />
