@@ -11,7 +11,6 @@ export const linkNames = [
   "اضافة طالب",
   "بيانات الطلاب",
   "اضافة معلم",
-  "تسجيل الخروج",
 ];
 export const linkURLs = [
   adminPanel,
