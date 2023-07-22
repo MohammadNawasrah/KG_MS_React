@@ -54,6 +54,7 @@ function AddStudentPage() {
       phoneNumber: phoneNumber,
       phoneNumberSecond: SecondPhoneNumber,
       nid: nId,
+      comments: comments,
     };
     return formData;
   };
@@ -61,6 +62,7 @@ function AddStudentPage() {
     e.preventDefault();
     const response = await axiosPost(addStudentApi, getFormData());
     if (response !== "error") {
+      alert("تم حفظ الطالب بنجاح");
       resetAlldata();
     }
   };
@@ -74,7 +76,7 @@ function AddStudentPage() {
             type="text"
             id="studentName"
             className="row form-control text-center"
-            placeholder="اسم لطالب"
+            placeholder="اسم الطالب"
             value={studentName}
             required
             onChange={e => setStudentName(e.target.value)}
