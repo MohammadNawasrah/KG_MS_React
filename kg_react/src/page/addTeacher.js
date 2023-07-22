@@ -7,13 +7,10 @@ import {
 } from "../core/data/static/staticData";
 import Navbar from "../widget/navbar";
 import controllNav from "../core/functions/controllerNav";
+import checkSession from "../core/functions/checkSession";
 
 const AddTeacher = () => {
-  const login = sessionStorage.getItem("loggedIn");
-  if (!login) {
-    sessionStorage.clear();
-    window.location.href = loginPage;
-  }
+  const login = checkSession();
   const [teacherName, setTeacherName] = useState("");
   const [teacherUserName, setTeacherUserName] = useState("");
   const [teacherPassword, setTeacherPassword] = useState("");

@@ -9,13 +9,10 @@ import {
 import controllNav from "../core/functions/controllerNav";
 import Navbar from "../widget/navbar";
 import * as XLSX from "xlsx";
+import checkSession from "../core/functions/checkSession";
 
 function ShowStudents() {
-  const login = sessionStorage.getItem("loggedIn");
-  if (!login) {
-    sessionStorage.clear();
-    window.location.href = loginPage;
-  }
+  const login = checkSession();
   const [students, setStudents] = useState([]);
   const [teachers, setTeachers] = useState([]);
   const [selectedTeacherUsername, setSelectedTeacherUsername] = useState("");
