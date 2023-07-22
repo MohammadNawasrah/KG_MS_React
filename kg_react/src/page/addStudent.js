@@ -146,7 +146,7 @@ function AddStudentPage() {
             id="comments"
             className="row form-control mt-3 text-center"
             placeholder="ملاحظات عن الطالب"
-            value={nId}
+            value={comments}
             required
             onChange={e => setComments(e.target.value)}
           />
