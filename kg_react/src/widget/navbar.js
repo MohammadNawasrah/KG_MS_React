@@ -7,10 +7,10 @@ function Navbar({ linkNames, linkUrls }) {
     window.location.href = loginPage;
   }
   return (
-    <nav dir="rtl" class="navbar navbar-expand-lg navbar-light bg-ligth">
-      <div class="navbar-fluid">
+    <nav dir="rtl" className="navbar navbar-expand-lg navbar-light bg-ligth">
+      <div className="navbar-fluid">
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -18,12 +18,10 @@ function Navbar({ linkNames, linkUrls }) {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
-          <a class="navbar-brand" htef={"#"}>
-            القائمة
-          </a>
+          <span className="navbar-toggler-icon"></span>
+          القائمة
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item1">
               <a
@@ -50,8 +48,8 @@ function Navbar({ linkNames, linkUrls }) {
               <a
                 className="nav-link "
                 aria-current="page"
-                htef={loginPage}
                 onClick={handleLogout}
+                htef={loginPage}
               >
                 تسجيل الخروج
               </a>

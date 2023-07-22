@@ -2,13 +2,10 @@ import React from "react";
 import "../static/css/admin.css";
 import Navbar from "../widget/navbar";
 
-import withSessionTimeout from "../core/functions/withSessionTimeout";
-
 import {
   addStudentPage,
   addTeacher,
   adminPanel,
-  loginPage,
   showStudentPage,
   studentDistributionApi,
 } from "../core/data/static/staticData";
@@ -21,7 +18,7 @@ const AdminPanel = () => {
   const filterLinks = controllNav(pageName);
   const linksNames = filterLinks.linkNames;
   const linkURLs = filterLinks.linkURLs;
-  const login = checkSession();
+  const isLogin = checkSession();
   const handleAddStudentClick = () => {
     window.location.href = addStudentPage;
   };
@@ -29,13 +26,12 @@ const AdminPanel = () => {
     window.location.href = showStudentPage;
   };
   const handleStudentDistribution = async event => {
-    const response = await axios.post(studentDistributionApi);
-    console.log(response.data);
+    await axios.post(studentDistributionApi);
   };
   const handleAddTeacher = async event => {
     window.location.href = addTeacher;
   };
-  return login ? (
+  return isLogin ? (
     <div>
       <React.Fragment>
         <Navbar linkNames={linksNames} linkUrls={linkURLs} />
@@ -44,7 +40,6 @@ const AdminPanel = () => {
         <div className="card mb-3" id="card">
           <div className="card-body">
             <div className="d-flex flex-column flex-lg-row">
-              {/* <h4>إدخال جميع الطلاب</h4> */}
               <div id="row">
                 <input
                   type="file"
@@ -120,4 +115,4 @@ const AdminPanel = () => {
   );
 };
 
-export default withSessionTimeout(AdminPanel);
+export default AdminPanel;
