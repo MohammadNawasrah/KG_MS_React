@@ -6,16 +6,22 @@ import withSessionTimeout from "../core/functions/withSessionTimeout";
 
 import {
   addStudentPage,
+  addTeacher,
+  adminPanel,
   loginPage,
   showStudentPage,
   studentDistributionApi,
 } from "../core/data/static/staticData";
 import handleFileUpload from "../core/functions/handleFileUpload";
 import axios from "axios";
+import controllNav from "../core/functions/controllerNav";
 const AdminPanel = () => {
-  const msg = sessionStorage.getItem("loggedIn");
-  //   const msg1 = sessionStorage.getItem('name');
-  if (msg !== "ture") {
+  const pageName = adminPanel;
+  const filterLinks = controllNav(pageName);
+  const linksNames = filterLinks.linkNames;
+  const linkURLs = filterLinks.linkURLs;
+  const login = sessionStorage.getItem("loggedIn");
+  if (!login) {
     window.location.href = loginPage;
   }
   const handleAddStudentClick = () => {
@@ -28,19 +34,18 @@ const AdminPanel = () => {
     const response = await axios.post(studentDistributionApi);
     console.log(response.data);
   };
-  return (
+  const handleAddTeacher = async event => {
+    window.location.href = addTeacher;
+  };
+  return login ? (
     <div>
       <React.Fragment>
-        <Navbar />
+        <Navbar linkNames={linksNames} linkUrls={linkURLs} />
       </React.Fragment>
       <div className="container">
-        <center>
-          <h3>administrator</h3>
-        </center>
         <div className="card mb-3" id="card">
           <div className="card-body">
             <div className="d-flex flex-column flex-lg-row">
-
               {/* <h4>إدخال جميع الطلاب</h4> */}
               <div id="row">
                 <input
@@ -53,7 +58,6 @@ const AdminPanel = () => {
                   رفع ملف الطلاب
                 </button>
               </div>
-
             </div>
           </div>
         </div>
@@ -98,7 +102,23 @@ const AdminPanel = () => {
           </div>
         </div>
       </div>
+      <div className="card mb-3" id="card">
+        <div className="card-body">
+          <div className="d-flex flex-column flex-lg-row">
+            <button
+              type="button"
+              onClick={handleAddTeacher}
+              className="btn btn-success"
+              id="add"
+            >
+              add teacher
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
+  ) : (
+    <div></div>
   );
 };
 

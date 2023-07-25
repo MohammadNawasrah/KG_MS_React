@@ -1,32 +1,60 @@
-// ... (previous imports)
-
+import React from "react";
 import { adminPanel, loginPage } from "../core/data/static/staticData";
-
-function Navbar() {
+import "../static/css/navbar.css";
+function Navbar({ linkNames, linkUrls }) {
+  function handleLogout() {
+    sessionStorage.clear();
+    window.location.href = loginPage;
+  }
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-ligth">
-      <div class='navbar-fluid'>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <nav dir="rtl" class="navbar navbar-expand-lg navbar-light bg-ligth">
+      <div class="navbar-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
-          menu
+          <a class="navbar-brand" htef={"#"}>
+            القائمة
+          </a>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item1"><h4>wellcome user</h4>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href={adminPanel}>Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href={'/#'}>Teachers</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href={'/#'}>Students
-
+          <ul className="navbar-nav">
+            <li className="nav-item1">
+              <a
+                className="nav-link active"
+                aria-current="page"
+                id="hello-msg"
+                href={adminPanel}
+              >
+                <h5>اهلا {sessionStorage.getItem("name")} </h5>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href={loginPage}>Logout</a>
+            {linkNames.map((linkName, index) => (
+              <li className="nav-item" key={index}>
+                <a
+                  className="nav-link active"
+                  aria-current="page"
+                  href={linkUrls[index]}
+                >
+                  {linkName}
+                </a>
+              </li>
+            ))}
+            <li className="nav-item">
+              <a
+                className="nav-link "
+                aria-current="page"
+                htef={loginPage}
+                onClick={handleLogout}
+              >
+                تسجيل الخروج
+              </a>
             </li>
           </ul>
         </div>

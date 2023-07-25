@@ -1,15 +1,11 @@
 import React from "react";
 import "../static/css/login.css";
 import splitAfterKeyword from "../core/functions/stringFunction";
-import {
-  adminPanel,
-  failurePage,
-  loginApiUrl,
-} from "../core/data/static/staticData";
+import { adminPanel, loginApiUrl } from "../core/data/static/staticData";
 
 import Button from "../widget/customButton";
 import axios from "axios";
-
+import logo from "../static/img/test.png";
 const LoginPage = () => {
   const handleSubmit = async event => {
     event.preventDefault();
@@ -19,20 +15,12 @@ const LoginPage = () => {
 
     const response = await axios.post(loginApiUrl, { username, password });
     var name;
-    if (response.data["requestUsername"].includes("admin"))
-      name = splitAfterKeyword(response.data["requestUsername"], "admin");
-    else name = splitAfterKeyword(response.data["requestUsername"], "name");
     console.log(response.data);
-    sessionStorage.setItem("loggedIn", "ture");
+    name = splitAfterKeyword(response.data, "admin");
+    sessionStorage.setItem("loggedIn", true);
     sessionStorage.setItem("name", name);
-    sessionStorage.setItem("data", JSON.stringify(response.data["students"]));
-    if (response.data["requestUsername"] === "success login admin" + name) {
+    if (response.data === "success login admin" + name) {
       window.location.href = adminPanel;
-    } else if (
-      response.data["requestUsername"] ===
-      "success login name" + name
-    ) {
-      window.location.href = failurePage;
     }
   };
 
@@ -47,13 +35,12 @@ const LoginPage = () => {
                 <span className="fa fa-android"></span>
               </h2>
             </span>
-            {/* image */}
-            <h4 className="company_title">شعار الروضة</h4>
+            <img src={logo} alt="logo"></img>
           </div>
           <div className="col-md-8 col-xs-12 col-sm-12 login_form ">
             <div className="container-fluid">
               <div className="row">
-                <h2 id="title text">اسم الروضة</h2>
+                <h2 id="title text">طلائع الامل</h2>
               </div>
               <div className="row">
                 <form onSubmit={handleSubmit} className="form-group">

@@ -4,17 +4,19 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   successPage,
   loginPage,
-  failurePage,
+  attendancePage,
   adminPanel,
   addStudentPage,
   showStudentPage,
+  addTeacher,
 } from "./core/data/static/staticData";
 import LoginPage from "./page/login";
 import SuccessPage from "./page/success_login";
-import FailurePage from "./page/failed_login";
+import AttendancePage from "./page/attendancePage";
 import AdminPanel from "./page/admin";
 import AddStudent from "./page/addStudent";
 import ShowStudent from "./page/showStudent";
+import AddTeacher from "./page/addTeacher";
 
 // const root=ReactDOM.create
 ReactDOM.render(
@@ -22,10 +24,11 @@ ReactDOM.render(
     <Routes>
       <Route path={loginPage} element={<LoginPage />} />
       <Route path={successPage} element={<SuccessPage />} />
-      <Route path={failurePage} element={<FailurePage />} />
+      <Route path={attendancePage} element={<AttendancePage />} />
       <Route path={adminPanel} element={<AdminPanel />} />
       <Route path={addStudentPage} element={<AddStudent />} />
       <Route path={showStudentPage} element={<ShowStudent />} />
+      <Route path={addTeacher} element={<AddTeacher />} />
     </Routes>
   </Router>,
   document.getElementById("root")
