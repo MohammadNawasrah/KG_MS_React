@@ -27,6 +27,7 @@ body {
 
 }
 
+
 .btn {
     margin-right: 50%;
 }
@@ -36,6 +37,31 @@ body {
     height: 3rem;
 }
 
-@media only screen and (min-width: 400px) {}
+@media only screen and (max-width: 1000px) {
+    #stdEXL {
+        width: 250px;
+        margin-left: -12px;
+    }
 
-@media only screen and (min-width: 250px) {}
+}
+
+@media only screen and(max-width:605px) {
+    #stdEXL {
+        margin-left: -30px;
+    }
+
+    #add {
+        margin-left: -35px;
+    }
+}
+
+@media only screen and (max-width: 372px) {
+    #stdEXL {
+        margin-left: -75px;
+    }
+
+    #add {
+        margin-left: -50px;
+    }
+
+}

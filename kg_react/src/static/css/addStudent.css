@@ -1,0 +1,25 @@
+#container {
+    padding-top: 25px;
+    padding-left: 250px;
+    padding-right: 250px;
+}
+
+.btn-light {
+    width: 280px;
+    margin-left: 32%;
+}
+
+#input-form {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+@media only screen and (min-width:854px) and (max-width:1000) {
+    .add-std-form {
+        align-content: center;
+    }
+
+    .btn {
+        margin-left: 0px;
+    }
+}

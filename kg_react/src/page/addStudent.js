@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import axios from "axios";
 import withSessionTimeout from "../core/functions/withSessionTimeout";
@@ -28,6 +29,7 @@ function AddStudentPage() {
   }
 
   const handleSubmit = async e => {
+
     e.preventDefault();
 
     const payload = {
@@ -124,5 +126,6 @@ function AddStudentPage() {
     <div></div>
   );
 }
+
 
 export default withSessionTimeout(AddStudentPage);
