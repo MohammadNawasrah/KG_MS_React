@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import withSessionTimeout from "../core/functions/withSessionTimeout";
 import { addStudentApi } from "../core/data/static/staticData";
+import Navbar from "../widget/navbar";
+import "../static/css/showStudent.css";
 
 async function fetchStudents() {
   try {
@@ -20,14 +22,17 @@ function ShowStudents() {
   });
   return (
     <div>
+      <div>
+        <Navbar/>
+      </div>
       <h2>Student List</h2>
-      <table>
+      <table className="table table-striped">
         <thead>
           <tr>
-            <th>Student Name</th>
-            <th>Date of Birth</th>
-            <th>Phone Number</th>
-            <th>Teacher ID</th>
+            <th className="col">Student Name</th>
+            <th className="col">Date of Birth</th>
+            <th className="col">Phone Number</th>
+            <th className="col">Teacher ID</th>
           </tr>
         </thead>
         <tbody>
@@ -41,6 +46,7 @@ function ShowStudents() {
           ))}
         </tbody>
       </table>
+      <button type="button" class="btn btn-success" id="ExportExel">export to Exel file</button>
     </div>
   );
 }

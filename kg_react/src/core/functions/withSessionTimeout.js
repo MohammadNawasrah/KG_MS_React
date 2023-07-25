@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { failurePage, loginPage } from "../data/static/staticData";
+import { failurePage } from "../data/static/staticData";
 
 const withSessionTimeout = WrappedComponent => {
   const SessionTimeout = () => {
