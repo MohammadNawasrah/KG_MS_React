@@ -1,11 +1,7 @@
 import React from "react";
 import "../static/css/login.css";
 import splitAfterKeyword from "../core/functions/stringFunction";
-import {
-  adminPanel,
-  failurePage,
-  loginApiUrl,
-} from "../core/data/static/staticData";
+import { adminPanel, loginApiUrl } from "../core/data/static/staticData";
 
 import Button from "../widget/customButton";
 import axios from "axios";
@@ -19,20 +15,12 @@ const LoginPage = () => {
 
     const response = await axios.post(loginApiUrl, { username, password });
     var name;
-    if (response.data["requestUsername"].includes("admin"))
-      name = splitAfterKeyword(response.data["requestUsername"], "admin");
-    else name = splitAfterKeyword(response.data["requestUsername"], "name");
     console.log(response.data);
+    name = splitAfterKeyword(response.data, "admin");
     sessionStorage.setItem("loggedIn", "ture");
     sessionStorage.setItem("name", name);
-    sessionStorage.setItem("data", JSON.stringify(response.data["students"]));
-    if (response.data["requestUsername"] === "success login admin" + name) {
+    if (response.data === "success login admin" + name) {
       window.location.href = adminPanel;
-    } else if (
-      response.data["requestUsername"] ===
-      "success login name" + name
-    ) {
-      window.location.href = failurePage;
     }
   };
 

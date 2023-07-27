@@ -3,12 +3,13 @@ import React, { useEffect, useState } from "react";
 import {
   getIsLogin,
   getStudentsForEachTeacher,
+  lastDateUpdate,
   loginPage,
   removeLogin,
   updateAttendance,
 } from "../core/data/static/staticData";
 
-const Failed = () => {
+const AttendancePage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [students, setStudents] = useState([]);
   const urlParams = new URLSearchParams(window.location.search);
@@ -30,7 +31,7 @@ const Failed = () => {
 
   function handleLogout() {
     setIsLoggedIn(false);
-    axios.post(removeLogin + `?teacherUserName=${teacherUserName}`);
+    axios.get(removeLogin + `?teacherUserName=${teacherUserName}`);
     window.location.href = loginPage;
   }
 
@@ -49,10 +50,13 @@ const Failed = () => {
       );
 
       // Send the updated checkbox state to the Spring Boot API
-      const response = await axios.post(updateAttendance, {
-        studentId,
-        attendanceStatus: checkedStudent.checked ? "ATTEND" : "ABSENCE",
-      });
+      const response = await axios.post(
+        updateAttendance + `?name=${teacherUserName}`,
+        {
+          studentId,
+          attendanceStatus: checkedStudent.checked ? "ATTEND" : "ABSENCE",
+        }
+      );
 
       // Handle the API response, if needed
       console.log("API response:", response.data);
@@ -74,6 +78,7 @@ const Failed = () => {
   useEffect(() => {
     async function fetchData() {
       try {
+        await axios.get(lastDateUpdate);
         const studentsData = await axios.post(
           getStudentsForEachTeacher + `?teacherUserName=${teacherUserName}`
         );
@@ -136,4 +141,4 @@ const Failed = () => {
   );
 };
 
-export default Failed;
+export default AttendancePage;
