@@ -1,53 +1,104 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import withSessionTimeout from "../core/functions/withSessionTimeout";
-import { addStudentApi, showStudentPage } from "../core/data/static/staticData";
+import {
+  getStudentsAndTeachers,
+  showStudentPage,
+} from "../core/data/static/staticData";
 import controllNav from "../core/functions/controllerNav";
 import Navbar from "../widget/navbar";
 
-async function fetchStudents() {
-  try {
-    const response = await axios.get(addStudentApi);
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return [];
-  }
-}
-
 function ShowStudents() {
+  const [students, setStudents] = useState([]);
+  const [teachers, setTeachers] = useState([]);
+  const [selectedTeacherUsername, setSelectedTeacherUsername] = useState("");
+  const [filteredStudents, setFilteredStudents] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(getStudentsAndTeachers);
+      setStudents(response.data["students"]);
+      setTeachers(response.data["teachers"]);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleTeacherSelectChange = event => {
+    const selectedUsername = event.target.value;
+    setSelectedTeacherUsername(selectedUsername);
+
+    const selectedTeacher = teachers.find(
+      teacher => teacher.teacherUserName === selectedUsername
+    );
+    if (selectedTeacher) {
+      const teacherId = selectedTeacher.teacherId;
+      const filteredStudentsByTeacher = students.filter(
+        student => student.teacherId === teacherId
+      );
+      setFilteredStudents(filteredStudentsByTeacher);
+    } else {
+      setFilteredStudents([]);
+    }
+  };
+
   const pageName = showStudentPage;
   const filterLinks = controllNav(pageName);
   const linksNames = filterLinks.linkNames;
   const linkURLs = filterLinks.linkURLs;
-  const [students, setStudents] = useState([]);
-  fetchStudents().then(data => {
-    setStudents(data);
-  });
+
   return (
     <div>
-      <Navbar linkNames={linksNames} linkUrls={linkURLs}></Navbar>
-      <h2>Student List</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Student Name</th>
-            <th>Date of Birth</th>
-            <th>Phone Number</th>
-            <th>Teacher ID</th>
-          </tr>
-        </thead>
-        <tbody>
-          {students.map(student => (
-            <tr key={student.id}>
-              <td>{student.studentName}</td>
-              <td>{student.dateOfBarthday}</td>
-              <td>{student.phoneNumber}</td>
-              <td>{student.teacherId}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <Navbar linkNames={linksNames} linkUrls={linkURLs} />
+      <div className="container mt-4">
+        <h2>Student List</h2>
+        <div className="row mb-3">
+          <div className="col-md-4">
+            <select
+              className="form-select"
+              onChange={handleTeacherSelectChange}
+              value={selectedTeacherUsername}
+            >
+              <option value="">Select a teacher</option>
+              {teachers.map(teacher => (
+                <option key={teacher.teacherId} value={teacher.teacherUserName}>
+                  {teacher.teacherUserName}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <div className="table-responsive">
+          <table className="table table-bordered">
+            <thead>
+              <tr>
+                <th>Student Name</th>
+                <th>Date of Birth</th>
+                <th>Phone Number</th>
+                <th>Teacher Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredStudents.map(student => (
+                <tr key={student.studentId}>
+                  <td>{student.studentName}</td>
+                  <td>{student.dateOfBarthday}</td>
+                  <td>{student.phoneNumber}</td>
+                  <td>
+                    {teachers.find(
+                      teacher => teacher.teacherId === student.teacherId
+                    )?.teacherName || "Unknown"}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }
