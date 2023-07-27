@@ -8,19 +8,24 @@ import {
 } from "../core/data/static/staticData";
 import controllNav from "../core/functions/controllerNav";
 import Navbar from "../widget/navbar";
+
 function AddStudentPage() {
   const pageName = addStudentPage;
   const filterLinks = controllNav(pageName);
   const linksNames = filterLinks.linkNames;
   const linkURLs = filterLinks.linkURLs;
-  const msg = sessionStorage.getItem("loggedIn");
-  if (msg !== "ture") {
-    window.location.href = loginPage;
-  }
+
   const [studentName, setStudentName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [teacherId, setTeacherId] = useState("");
+  const [SecondPhoneNumber, setSecondPhoneNumber] = useState("");
+  const [nId, setNid] = useState("");
+
+  const login = sessionStorage.getItem("loggedIn");
+  if (!login) {
+    sessionStorage.clear();
+    window.location.href = loginPage;
+  }
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -29,7 +34,8 @@ function AddStudentPage() {
       studentName: studentName,
       dateOfBarthday: dateOfBirth,
       phoneNumber: phoneNumber,
-      teacherId: teacherId,
+      phoneNumberSecond: SecondPhoneNumber, // Include SecondPhoneNumber in the payload
+      nid: nId, // Include nId in the payload
     };
 
     try {
@@ -39,50 +45,84 @@ function AddStudentPage() {
       setStudentName("");
       setDateOfBirth("");
       setPhoneNumber("");
-      setTeacherId("");
+      setSecondPhoneNumber("");
+      setNid("");
     } catch (error) {
       console.error("Error posting data:", error);
     }
   };
 
-  return (
+  return login ? (
     <div>
       <Navbar linkNames={linksNames} linkUrls={linkURLs}></Navbar>
-      <h2>Add Student</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Student Name:
-          <input
-            type="text"
-            value={studentName}
-            required
-            onChange={e => setStudentName(e.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          Date of Birth:
-          <input
-            type="date"
-            value={dateOfBirth}
-            required
-            onChange={e => setDateOfBirth(e.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          Phone Number:
-          <input
-            type="text"
-            value={phoneNumber}
-            required
-            onChange={e => setPhoneNumber(e.target.value)}
-          />
-        </label>
-        <br />
-        <button type="submit">Add Student</button>
-      </form>
+      <div className="container mt-4">
+        <h2>Add Student</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="studentName">Student Name:</label>
+            <input
+              type="text"
+              id="studentName"
+              className="form-control"
+              value={studentName}
+              required
+              onChange={e => setStudentName(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="dateOfBirth">Date of Birth:</label>
+            <input
+              type="date"
+              id="dateOfBirth"
+              className="form-control"
+              value={dateOfBirth}
+              required
+              onChange={e => setDateOfBirth(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="phoneNumber">Phone Number:</label>
+            <input
+              type="text"
+              id="phoneNumber"
+              className="form-control"
+              value={phoneNumber}
+              required
+              onChange={e => setPhoneNumber(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="SecondPhoneNumber">Second Phone Number:</label>
+            <input
+              type="text"
+              id="SecondPhoneNumber"
+              className="form-control"
+              value={SecondPhoneNumber}
+              required
+              onChange={e => setSecondPhoneNumber(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="nId">National ID:</label>
+            <input
+              type="text"
+              id="nId"
+              className="form-control"
+              value={nId}
+              required
+              onChange={e => setNid(e.target.value)}
+            />
+          </div>
+
+          <button type="submit" className="btn btn-primary">
+            Add Student
+          </button>
+        </form>
+      </div>
     </div>
+  ) : (
+    <div></div>
   );
 }
+
 export default withSessionTimeout(AddStudentPage);
