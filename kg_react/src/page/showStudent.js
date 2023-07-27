@@ -79,6 +79,8 @@ function ShowStudents() {
                 <th>Student Name</th>
                 <th>Date of Birth</th>
                 <th>Phone Number</th>
+                <th>Second Phone Number</th>
+                <th>national id</th>
                 <th>Teacher Name</th>
               </tr>
             </thead>
@@ -87,6 +89,8 @@ function ShowStudents() {
                 <tr key={student.studentId}>
                   <td>{student.studentName}</td>
                   <td>{student.dateOfBarthday}</td>
+                  <td>{student.phoneNumberSecond}</td>
+                  <td>{student.nid}</td>
                   <td>{student.phoneNumber}</td>
                   <td>
                     {teachers.find(
