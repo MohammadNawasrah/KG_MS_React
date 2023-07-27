@@ -17,7 +17,7 @@ const LoginPage = () => {
     var name;
     console.log(response.data);
     name = splitAfterKeyword(response.data, "admin");
-    sessionStorage.setItem("loggedIn", "ture");
+    sessionStorage.setItem("loggedIn", true);
     sessionStorage.setItem("name", name);
     if (response.data === "success login admin" + name) {
       window.location.href = adminPanel;

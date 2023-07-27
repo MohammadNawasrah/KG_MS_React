@@ -20,8 +20,8 @@ const AdminPanel = () => {
   const filterLinks = controllNav(pageName);
   const linksNames = filterLinks.linkNames;
   const linkURLs = filterLinks.linkURLs;
-  const msg = sessionStorage.getItem("loggedIn");
-  if (msg !== "ture") {
+  const login = sessionStorage.getItem("loggedIn");
+  if (!login) {
     window.location.href = loginPage;
   }
   const handleAddStudentClick = () => {
@@ -37,19 +37,15 @@ const AdminPanel = () => {
   const handleAddTeacher = async event => {
     window.location.href = addTeacher;
   };
-  return (
+  return login ? (
     <div>
       <React.Fragment>
         <Navbar linkNames={linksNames} linkUrls={linkURLs} />
       </React.Fragment>
       <div className="container">
-        <center>
-          <h3>administrator</h3>
-        </center>
         <div className="card mb-3" id="card">
           <div className="card-body">
             <div className="d-flex flex-column flex-lg-row">
-
               {/* <h4>إدخال جميع الطلاب</h4> */}
               <div id="row">
                 <input
@@ -62,7 +58,6 @@ const AdminPanel = () => {
                   رفع ملف الطلاب
                 </button>
               </div>
-
             </div>
           </div>
         </div>
@@ -122,6 +117,8 @@ const AdminPanel = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <div></div>
   );
 };
 

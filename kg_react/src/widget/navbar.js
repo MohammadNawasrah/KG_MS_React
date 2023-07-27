@@ -1,7 +1,11 @@
 import React from "react";
-import { adminPanel } from "../core/data/static/staticData";
-
+import { adminPanel, loginPage } from "../core/data/static/staticData";
+import "../static/css/navbar.css";
 function Navbar({ linkNames, linkUrls }) {
+  function handleLogout() {
+    sessionStorage.clear();
+    window.location.href = loginPage;
+  }
   return (
     <nav dir="rtl" class="navbar navbar-expand-lg navbar-light bg-ligth">
       <div class="navbar-fluid">
@@ -15,7 +19,9 @@ function Navbar({ linkNames, linkUrls }) {
           aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
-          <a class="navbar-brand">menu</a>
+          <a class="navbar-brand" htef={"#"}>
+            القائمة
+          </a>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
@@ -40,6 +46,16 @@ function Navbar({ linkNames, linkUrls }) {
                 </a>
               </li>
             ))}
+            <li className="nav-item">
+              <a
+                className="nav-link "
+                aria-current="page"
+                htef={loginPage}
+                onClick={handleLogout}
+              >
+                تسجيل الخروج
+              </a>
+            </li>
           </ul>
         </div>
       </div>
