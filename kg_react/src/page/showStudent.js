@@ -7,6 +7,7 @@ import {
 } from "../core/data/static/staticData";
 import controllNav from "../core/functions/controllerNav";
 import Navbar from "../widget/navbar";
+import * as XLSX from "xlsx";
 
 function ShowStudents() {
   const [students, setStudents] = useState([]);
@@ -46,6 +47,34 @@ function ShowStudents() {
     }
   };
 
+  const handleExportToExcel = () => {
+    let teacherName = "All_Teachers"; // Default name for the file
+    if (selectedTeacherUsername !== "") {
+      // If a teacher is selected, use their name as the filename
+      const selectedTeacher = teachers.find(
+        teacher => teacher.teacherUserName === selectedTeacherUsername
+      );
+      if (selectedTeacher) {
+        teacherName = selectedTeacher.teacherName.replace(" ", "_");
+        const teacherId = selectedTeacher.teacherId;
+        const filteredStudentsByTeacher = students.filter(
+          student => student.teacherId === teacherId
+        );
+        exportToExcel(filteredStudentsByTeacher, teacherName);
+      }
+    } else {
+      // If no teacher is selected, export data for all teachers with default filename
+      exportToExcel(students, teacherName);
+    }
+  };
+
+  const exportToExcel = (data, teacherName) => {
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Students");
+    XLSX.writeFile(workbook, `${teacherName}_student_data.xlsx`);
+  };
+
   const pageName = showStudentPage;
   const filterLinks = controllNav(pageName);
   const linksNames = filterLinks.linkNames;
@@ -70,6 +99,15 @@ function ShowStudents() {
                 </option>
               ))}
             </select>
+          </div>
+          <div className="col-md-4">
+            <button
+              className="btn btn-primary"
+              onClick={handleExportToExcel}
+              disabled={teachers.length === 0 && selectedTeacherUsername === ""}
+            >
+              Export to Excel
+            </button>
           </div>
         </div>
         <div className="table-responsive">
