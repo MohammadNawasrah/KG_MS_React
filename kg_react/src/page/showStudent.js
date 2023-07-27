@@ -43,14 +43,12 @@ function ShowStudents() {
       );
       setFilteredStudents(filteredStudentsByTeacher);
     } else {
-      setFilteredStudents([]);
+      setFilteredStudents(students);
     }
   };
-
   const handleExportToExcel = () => {
-    let teacherName = "All_Teachers"; // Default name for the file
+    let teacherName = "All_Teachers";
     if (selectedTeacherUsername !== "") {
-      // If a teacher is selected, use their name as the filename
       const selectedTeacher = teachers.find(
         teacher => teacher.teacherUserName === selectedTeacherUsername
       );
@@ -63,7 +61,6 @@ function ShowStudents() {
         exportToExcel(filteredStudentsByTeacher, teacherName);
       }
     } else {
-      // If no teacher is selected, export data for all teachers with default filename
       exportToExcel(students, teacherName);
     }
   };
@@ -92,7 +89,9 @@ function ShowStudents() {
               onChange={handleTeacherSelectChange}
               value={selectedTeacherUsername}
             >
-              <option value="">Select a teacher</option>
+              <option id="option" value="Select a teacher">
+                Select a teacher
+              </option>
               {teachers.map(teacher => (
                 <option key={teacher.teacherId} value={teacher.teacherUserName}>
                   {teacher.teacherUserName}
