@@ -4,11 +4,13 @@ import {
   addStudentPage,
   getLimitYears,
 } from "../core/data/static/staticData";
+import Button from "../widget/customButton";
 import controllNav from "../core/functions/controllerNav";
 import Navbar from "../widget/navbar";
 import axiosGet from "../core/functions/axiosGet";
 import axiosPost from "../core/functions/axiosPost";
 import checkSession from "../core/functions/checkSession";
+import CustomInput from "../widget/customInput";
 
 function AddStudentPage() {
   const pageName = addStudentPage;
@@ -67,22 +69,24 @@ function AddStudentPage() {
     <div>
       <Navbar linkNames={linksNames} linkUrls={linkURLs}></Navbar>
       <div className="container mt-4">
-        <h2>Add Student</h2>
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="studentName">Student Name:</label>
-            <input
-              type="text"
-              id="studentName"
-              className="form-control"
-              value={studentName}
-              required
-              onChange={e => setStudentName(e.target.value)}
-            />
-          </div>
+          <input
+            type="text"
+            id="studentName"
+            className="row form-control text-center"
+            placeholder="اسم لطالب"
+            value={studentName}
+            required
+            onChange={e => setStudentName(e.target.value)}
+          />
 
-          <div className="form-group">
-            <label htmlFor="dateInput">Date of Birth:</label>
+          <label
+            className=" mt-3 d-flex justify-content-center"
+            htmlFor="dateInput"
+          >
+            تاريخ ميلاد الطالب
+          </label>
+          <div className="mt-2 d-flex justify-content-center">
             <input
               type="date"
               id="dateInput"
@@ -109,55 +113,51 @@ function AddStudentPage() {
             />
           </div>
 
-          <div className="form-group">
-            <label htmlFor="phoneNumber">Phone Number:</label>
-            <input
-              type="text"
-              id="phoneNumber"
-              className="form-control"
-              value={phoneNumber}
-              required
-              onChange={e => setPhoneNumber(e.target.value)}
+          <input
+            type="text"
+            id="phoneNumber"
+            className="row form-control mt-3 text-center"
+            placeholder="رقم الهاتف"
+            value={phoneNumber}
+            required
+            onChange={e => setPhoneNumber(e.target.value)}
+          />
+
+          <input
+            type="text"
+            id="SecondPhoneNumber"
+            className="row form-control mt-3 text-center"
+            placeholder="رقم هاتف احتياطي"
+            value={SecondPhoneNumber}
+            required
+            onChange={e => setSecondPhoneNumber(e.target.value)}
+          />
+          <input
+            type="text"
+            id="nId"
+            className="row form-control mt-3 text-center"
+            placeholder="الرقم المدني للطالب"
+            value={nId}
+            required
+            onChange={e => setNid(e.target.value)}
+          />
+
+          <textarea
+            id="comments"
+            className="row form-control mt-3 text-center"
+            placeholder="ملاحظات عن الطالب"
+            value={nId}
+            required
+            onChange={e => setComments(e.target.value)}
+          />
+
+          <div className=" d-flex justify-content-center mt-3 ">
+            <Button
+              text={"اضافة الطالب"}
+              type="submit"
+              className=" btn-primary"
             />
           </div>
-
-          <div className="form-group">
-            <label htmlFor="SecondPhoneNumber">Second Phone Number:</label>
-            <input
-              type="text"
-              id="SecondPhoneNumber"
-              className="form-control"
-              value={SecondPhoneNumber}
-              required
-              onChange={e => setSecondPhoneNumber(e.target.value)}
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="nId">National ID:</label>
-            <input
-              type="text"
-              id="nId"
-              className="form-control"
-              value={nId}
-              required
-              onChange={e => setNid(e.target.value)}
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="comments">Comments:</label>
-            <textarea
-              id="comments"
-              className="form-control"
-              value={comments}
-              onChange={e => setComments(e.target.value)}
-            />
-          </div>
-
-          <button type="submit" className="btn btn-primary">
-            Add Student
-          </button>
         </form>
       </div>
     </div>

@@ -1,5 +1,4 @@
-.btn {
-    transition: all .5s ease;
+.btns {
     width: 70%;
     border-radius: 30px;
     color: black;
@@ -8,8 +7,8 @@
     border: 1px solid #807b7bf8;
 }
 
-.btn:hover,
-.btn:focus {
+.btns:hover,
+.btns:focus {
     background-color: #ccc;
     color: #fff;
 }
