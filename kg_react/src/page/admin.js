@@ -15,15 +15,13 @@ import {
 import handleFileUpload from "../core/functions/handleFileUpload";
 import axios from "axios";
 import controllNav from "../core/functions/controllerNav";
+import checkSession from "../core/functions/checkSession";
 const AdminPanel = () => {
   const pageName = adminPanel;
   const filterLinks = controllNav(pageName);
   const linksNames = filterLinks.linkNames;
   const linkURLs = filterLinks.linkURLs;
-  const login = sessionStorage.getItem("loggedIn");
-  if (!login) {
-    window.location.href = loginPage;
-  }
+  const login = checkSession();
   const handleAddStudentClick = () => {
     window.location.href = addStudentPage;
   };

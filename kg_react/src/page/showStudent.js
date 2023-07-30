@@ -4,14 +4,17 @@ import withSessionTimeout from "../core/functions/withSessionTimeout";
 
 import {
   getStudentsAndTeachers,
+  loginPage,
   showStudentPage,
 } from "../core/data/static/staticData";
 import controllNav from "../core/functions/controllerNav";
 import Navbar from "../widget/navbar";
 import * as XLSX from "xlsx";
+import checkSession from "../core/functions/checkSession";
 
 
 function ShowStudents() {
+  const login = checkSession();
   const [students, setStudents] = useState([]);
   const [teachers, setTeachers] = useState([]);
   const [selectedTeacherUsername, setSelectedTeacherUsername] = useState("");
@@ -79,7 +82,7 @@ function ShowStudents() {
   const linksNames = filterLinks.linkNames;
   const linkURLs = filterLinks.linkURLs;
 
-  return (
+  return login ? (
     <div>
       <Navbar linkNames={linksNames} linkUrls={linkURLs} />
       <div className="container mt-4">
@@ -144,6 +147,8 @@ function ShowStudents() {
       </div>
 
     </div>
+  ) : (
+    <div></div>
   );
 }
 

@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { addTeacher, addTeacherApi } from "../core/data/static/staticData";
+import {
+  addTeacher,
+  addTeacherApi,
+  loginPage,
+} from "../core/data/static/staticData";
 import Navbar from "../widget/navbar";
 import controllNav from "../core/functions/controllerNav";
+import checkSession from "../core/functions/checkSession";
 
 const AddTeacher = () => {
+  const login = checkSession();
   const [teacherName, setTeacherName] = useState("");
   const [teacherUserName, setTeacherUserName] = useState("");
   const [teacherPassword, setTeacherPassword] = useState("");
@@ -12,6 +18,8 @@ const AddTeacher = () => {
   const filterLinks = controllNav(pageName);
   const linksNames = filterLinks.linkNames;
   const linkURLs = filterLinks.linkURLs;
+  const [responseAddTeacher, setResponseAddTeacher] = useState("");
+
   const handleFormSubmit = async e => {
     e.preventDefault();
     const newTeacher = {
@@ -21,53 +29,65 @@ const AddTeacher = () => {
     };
 
     try {
-      await axios.post(addTeacherApi, newTeacher); // Assuming your Java API endpoint for adding a teacher is "/api/teachers"
-      alert("Teacher added successfully!");
-      // You can redirect the user to a different page or perform other actions after adding the teacher.
+      const response = await axios.post(addTeacherApi, newTeacher);
+      setResponseAddTeacher(response.data);
+      alert(response.data); // Show the response from the server in the alert
+
+      // Reset input fields after successful form submission
+      setTeacherName("");
+      setTeacherUserName("");
+      setTeacherPassword("");
     } catch (error) {
       console.error("Error adding teacher:", error);
-      alert("Failed to add teacher. Please check the console for details.");
     }
   };
-  return (
+
+  return login ? (
     <div>
       <React.Fragment>
         <Navbar linkNames={linksNames} linkUrls={linkURLs} />
       </React.Fragment>
-      <h2>Add Teacher</h2>
-      <form onSubmit={handleFormSubmit}>
-        <div>
-          <label>Name:</label>
-          <input
-            type="text"
-            value={teacherName}
-            onChange={e => setTeacherName(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={teacherUserName}
-            onChange={e => setTeacherUserName(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={teacherPassword}
-            onChange={e => setTeacherPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <button type="submit">Add Teacher</button>
-        </div>
-      </form>
+      <div className="container mt-4">
+        <h2>Add Teacher</h2>
+        <form onSubmit={handleFormSubmit}>
+          <div className="form-group">
+            <label>Name:</label>
+            <input
+              type="text"
+              className="form-control"
+              value={teacherName}
+              onChange={e => setTeacherName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Username:</label>
+            <input
+              type="text"
+              className="form-control"
+              value={teacherUserName}
+              onChange={e => setTeacherUserName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Password:</label>
+            <input
+              type="password"
+              className="form-control"
+              value={teacherPassword}
+              onChange={e => setTeacherPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Add Teacher
+          </button>
+        </form>
+      </div>
     </div>
+  ) : (
+    <div></div>
   );
 };
 

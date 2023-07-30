@@ -13,6 +13,7 @@ export var removeLogin = `${url}/teachers/removeLogin`;
 export var getIsLogin = `${url}/teachers/getIsLogin`;
 export var getStudentsForEachTeacher = `${url}/teachers/getStudent`;
 export var getAllTeachers = `${url}/teachers/getTeachers`;
+export var getLimitYears = `${url}/datelimits/limitsYears`;
 // react
 export var successPage = "/successPage";
 export var loginPage = "/";
