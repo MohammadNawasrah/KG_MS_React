@@ -1,0 +1,20 @@
+#ExportExel {
+    width: 200px;
+
+    margin-top: 15px;
+    margin-left: 550px;
+    /* margin-right: 50%; */
+}
+
+#ExportExel:hover {
+    background-color: green;
+}
+
+@media only screen and (max-width:900px) {
+    #ExportExel {
+        margin-left: 290px;
+    }
+
+}
+
+@media only screen and (min-width:508px) {}
