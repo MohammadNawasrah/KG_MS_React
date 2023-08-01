@@ -10,7 +10,6 @@ import Navbar from "../widget/navbar";
 import axiosGet from "../core/functions/axiosGet";
 import axiosPost from "../core/functions/axiosPost";
 import checkSession from "../core/functions/checkSession";
-import CustomInput from "../widget/customInput";
 
 function AddStudentPage() {
   const pageName = addStudentPage;

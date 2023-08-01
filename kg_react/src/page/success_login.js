@@ -1,5 +1,4 @@
 import React from "react";
-import withSessionTimeout from "../core/functions/withSessionTimeout";
 import "../static/css/successLogin.css";
 const Successful = () => {
   const msg = sessionStorage.getItem("loggedIn");
@@ -14,4 +13,4 @@ const Successful = () => {
     );
 };
 
-export default withSessionTimeout(Successful);
+export default Successful;

@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import withSessionTimeout from "../core/functions/withSessionTimeout";
 
 import {
   getStudentsAndTeachers,
-  loginPage,
   showStudentPage,
 } from "../core/data/static/staticData";
 import controllNav from "../core/functions/controllerNav";
 import Navbar from "../widget/navbar";
 import * as XLSX from "xlsx";
 import checkSession from "../core/functions/checkSession";
-
 
 function ShowStudents() {
   const login = checkSession();
@@ -145,11 +142,10 @@ function ShowStudents() {
           </table>
         </div>
       </div>
-
     </div>
   ) : (
     <div></div>
   );
 }
 
-export default withSessionTimeout(ShowStudents);
+export default ShowStudents;

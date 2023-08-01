@@ -1,32 +1,20 @@
 import React from "react";
 import "../static/css/login.css";
-import splitAfterKeyword from "../core/functions/stringFunction";
-import { adminPanel, loginApiUrl } from "../core/data/static/staticData";
 
 import Button from "../widget/customButton";
-import axios from "axios";
+
 import logo from "../static/img/test.png";
+import fromLoginTo from "../core/router/fromLoginTo";
 const LoginPage = () => {
   const handleSubmit = async event => {
     event.preventDefault();
-
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
-
-    const response = await axios.post(loginApiUrl, { username, password });
-    var name;
-    console.log(response.data);
-    name = splitAfterKeyword(response.data, "admin");
-    sessionStorage.setItem("loggedIn", true);
-    sessionStorage.setItem("name", name);
-    if (response.data === "success login admin" + name) {
-      window.location.href = adminPanel;
-    }
+    fromLoginTo(username, password);
   };
 
   return (
     <div>
-      {/* Main Content */}
       <div className="container-fluid">
         <div className="row main-content text-center">
           <div className="col-md-4 text-center company__info">
@@ -44,7 +32,6 @@ const LoginPage = () => {
               </div>
               <div className="row">
                 <form onSubmit={handleSubmit} className="form-group">
-                  {/* username */}
                   <div className="row">
                     <input
                       type="text"
@@ -53,7 +40,6 @@ const LoginPage = () => {
                       placeholder="إسم المستخدم"
                     />
                   </div>
-                  {/* password */}
                   <div className="row">
                     <input
                       type="password"

@@ -5,7 +5,6 @@ import {
   showStudentPage,
 } from "./staticData";
 
-// links.js
 export const linkNames = [
   "الرئيسيه",
   "اضافة طالب",

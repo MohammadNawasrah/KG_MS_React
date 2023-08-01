@@ -73,7 +73,7 @@ const AttendancePage = () => {
     }
 
     fetchData();
-  }, [teacherUserName]);
+  });
 
   useEffect(() => {
     async function fetchData() {

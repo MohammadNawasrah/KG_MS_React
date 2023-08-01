@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {
-  addTeacher,
-  addTeacherApi,
-  loginPage,
-} from "../core/data/static/staticData";
+import { addTeacher, addTeacherApi } from "../core/data/static/staticData";
 import Navbar from "../widget/navbar";
 import controllNav from "../core/functions/controllerNav";
 import checkSession from "../core/functions/checkSession";
@@ -27,7 +23,7 @@ const AddTeacher = () => {
       teacherUserName,
       teacherPassword,
     };
-
+    console.log(responseAddTeacher);
     try {
       const response = await axios.post(addTeacherApi, newTeacher);
       setResponseAddTeacher(response.data);
