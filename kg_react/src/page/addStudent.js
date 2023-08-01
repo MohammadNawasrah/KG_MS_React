@@ -41,6 +41,7 @@ function AddStudentPage() {
     setSecondPhoneNumber("");
     setNid("");
     setComments("");
+    setDateOfBirth("");
   };
   const getFormData = () => {
     const formData = {
@@ -55,9 +56,14 @@ function AddStudentPage() {
   };
   const handleSubmit = async e => {
     e.preventDefault();
+    if (dateOfBirth === "") {
+      alert("يرجى اضافة تاريخ الميلاد");
+      return;
+    }
     const response = await axiosPost(addStudentApi, getFormData());
     if (response !== "error") {
-      alert("تم حفظ الطالب بنجاح");
+      console.log(response.date);
+      alert("تم حفظ الطالب محمد تمهيدي بنجاح");
       window.location.reload();
       resetAlldata();
     }
@@ -87,7 +93,7 @@ function AddStudentPage() {
             تاريخ ميلاد الطالب
           </label>
           <div className="mt-2 d-flex justify-content-center">
-            <DateP onChange={handleDate} onYearSelect={resetAlldata}></DateP>
+            <DateP onChange={handleDate}></DateP>
           </div>
 
           <input
