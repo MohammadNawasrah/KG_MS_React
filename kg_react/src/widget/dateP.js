@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "../static/css/Date.css";
 import axiosGet from "../core/functions/axiosGet";
 import { getLimitYears } from "../core/data/static/staticData";
-const DateP = ({ onChange, onYearSelect }) => {
+const DateP = ({ onChange }) => {
   const [firstDateD, setFirstDate] = useState("");
   const [endDateD, setEndDate] = useState("");
   const [selectYear, setSelectYear] = useState("");
@@ -153,7 +153,6 @@ const DateP = ({ onChange, onYearSelect }) => {
     setSelectYear(event.target.value);
     document.getElementById("selctMonths").value = 0;
     setMonthOptions(generateMonthOptions(event.target.value));
-    onYearSelect();
   }
   function handelSelectMonth(event) {
     setSelectMonth(event.target.value);
