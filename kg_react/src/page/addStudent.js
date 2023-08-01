@@ -10,6 +10,7 @@ import Navbar from "../widget/navbar";
 import axiosGet from "../core/functions/axiosGet";
 import axiosPost from "../core/functions/axiosPost";
 import checkSession from "../core/functions/checkSession";
+import DateP from "../widget/dateP";
 
 function AddStudentPage() {
   const pageName = addStudentPage;
@@ -18,15 +19,14 @@ function AddStudentPage() {
   const linkURLs = filterLinks.linkURLs;
 
   const [studentName, setStudentName] = useState("");
-  const [dayOfBirth, setDayOfBirth] = useState("");
-  const [monthOfBirth, setMonthOfBirth] = useState("");
-  const [yearOfBirth, setYearOfBirth] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [SecondPhoneNumber, setSecondPhoneNumber] = useState("");
   const [nId, setNid] = useState("");
   const [comments, setComments] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
 
-  const login = checkSession();
+  // const login = checkSession();
+  const login = true;
   const [yearsFromDatabase, setYearsFromDatabase] = useState([]);
   useEffect(() => {
     fetchYearsFromApi();
@@ -37,16 +37,12 @@ function AddStudentPage() {
   };
   const resetAlldata = () => {
     setStudentName("");
-    setDayOfBirth("");
-    setMonthOfBirth("");
-    setYearOfBirth("");
     setPhoneNumber("");
     setSecondPhoneNumber("");
     setNid("");
     setComments("");
   };
   const getFormData = () => {
-    const dateOfBirth = `${yearOfBirth}-${monthOfBirth}-${dayOfBirth}`;
     const formData = {
       studentName: studentName,
       dateOfBarthday: dateOfBirth,
@@ -62,10 +58,13 @@ function AddStudentPage() {
     const response = await axiosPost(addStudentApi, getFormData());
     if (response !== "error") {
       alert("تم حفظ الطالب بنجاح");
+      window.location.reload();
       resetAlldata();
     }
   };
-
+  function handleDate(date) {
+    setDateOfBirth(date);
+  }
   return login ? (
     <div>
       <Navbar linkNames={linksNames} linkUrls={linkURLs}></Navbar>
@@ -88,30 +87,7 @@ function AddStudentPage() {
             تاريخ ميلاد الطالب
           </label>
           <div className="mt-2 d-flex justify-content-center">
-            <input
-              type="date"
-              id="dateInput"
-              value={
-                yearOfBirth && monthOfBirth && dayOfBirth
-                  ? `${yearOfBirth}-${monthOfBirth}-${dayOfBirth}`
-                  : ""
-              }
-              min={yearsFromDatabase[0]}
-              max={yearsFromDatabase[yearsFromDatabase.length - 1]}
-              onChange={e => {
-                const dateValue = e.target.value;
-                if (dateValue) {
-                  const [year, month, day] = dateValue.split("-");
-                  setYearOfBirth(year);
-                  setMonthOfBirth(month);
-                  setDayOfBirth(day);
-                } else {
-                  setYearOfBirth("");
-                  setMonthOfBirth("");
-                  setDayOfBirth("");
-                }
-              }}
-            />
+            <DateP onChange={handleDate} onYearSelect={resetAlldata}></DateP>
           </div>
 
           <input
