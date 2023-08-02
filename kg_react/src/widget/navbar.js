@@ -1,10 +1,10 @@
 import React from "react";
-import { adminPanel, loginPage } from "../core/data/static/staticData";
 import "../static/css/navbar.css";
+import LinksReact from "../core/data/static/linksReact";
 function Navbar({ linkNames, linkUrls }) {
   function handleLogout() {
     sessionStorage.clear();
-    window.location.href = loginPage;
+    window.location.href = LinksReact.loginPage;
   }
   return (
     <nav dir="rtl" className="navbar navbar-expand-lg navbar-light bg-ligth">
@@ -28,7 +28,7 @@ function Navbar({ linkNames, linkUrls }) {
                 className="nav-link active"
                 aria-current="page"
                 id="hello-msg"
-                href={adminPanel}
+                href={LinksReact.adminPanel}
               >
                 <h5>اهلا {sessionStorage.getItem("name")} </h5>
               </a>
@@ -49,7 +49,7 @@ function Navbar({ linkNames, linkUrls }) {
                 className="nav-link "
                 aria-current="page"
                 onClick={handleLogout}
-                htef={loginPage}
+                htef={LinksReact.loginPage}
               >
                 تسجيل الخروج
               </a>

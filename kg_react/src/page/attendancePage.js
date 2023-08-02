@@ -1,13 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import {
-  getIsLogin,
-  getStudentsForEachTeacher,
-  lastDateUpdate,
-  loginPage,
-  removeLogin,
-  updateAttendance,
-} from "../core/data/static/staticData";
+import DataFromApi from "../core/data/static/dataFromApi";
 
 const AttendancePage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -20,7 +13,7 @@ const AttendancePage = () => {
   async function checkLoginStatus() {
     try {
       const response = await axios.get(
-        getIsLogin + `?teacherUserName=${teacherUserName}`
+        DataFromApi.getIsLogin + `?teacherUserName=${teacherUserName}`
       );
       return response.data;
     } catch (error) {
@@ -31,8 +24,8 @@ const AttendancePage = () => {
 
   function handleLogout() {
     setIsLoggedIn(false);
-    axios.get(removeLogin + `?teacherUserName=${teacherUserName}`);
-    window.location.href = loginPage;
+    axios.get(DataFromApi.removeLogin + `?teacherUserName=${teacherUserName}`);
+    window.location.href = DataFromApi.loginPage;
   }
 
   const handleCheckboxChange = async studentId => {
@@ -51,7 +44,7 @@ const AttendancePage = () => {
 
       // Send the updated checkbox state to the Spring Boot API
       const response = await axios.post(
-        updateAttendance + `?name=${teacherUserName}`,
+        DataFromApi.updateAttendance + `?name=${teacherUserName}`,
         {
           studentId,
           attendanceStatus: checkedStudent.checked ? "ATTEND" : "ABSENCE",
@@ -78,9 +71,10 @@ const AttendancePage = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        await axios.get(lastDateUpdate);
+        await axios.get(DataFromApi.lastDateUpdate);
         const studentsData = await axios.post(
-          getStudentsForEachTeacher + `?teacherUserName=${teacherUserName}`
+          DataFromApi.getStudentsForEachTeacher +
+            `?teacherUserName=${teacherUserName}`
         );
         const fetchedStudents = studentsData.data["students"];
         setStudents(fetchedStudents);

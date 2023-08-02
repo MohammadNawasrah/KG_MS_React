@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { addTeacher, addTeacherApi } from "../core/data/static/staticData";
 import Navbar from "../widget/navbar";
 import controllNav from "../core/functions/controllerNav";
 import checkSession from "../core/functions/checkSession";
+import DataFromApi from "../core/data/static/dataFromApi";
+import LinksReact from "../core/data/static/linksReact";
 
 const AddTeacher = () => {
   const login = checkSession();
   const [teacherName, setTeacherName] = useState("");
   const [teacherUserName, setTeacherUserName] = useState("");
   const [teacherPassword, setTeacherPassword] = useState("");
-  const pageName = addTeacher;
+  const pageName = LinksReact.addTeacher;
   const filterLinks = controllNav(pageName);
   const linksNames = filterLinks.linkNames;
   const linkURLs = filterLinks.linkURLs;
@@ -25,7 +26,7 @@ const AddTeacher = () => {
     };
     console.log(responseAddTeacher);
     try {
-      const response = await axios.post(addTeacherApi, newTeacher);
+      const response = await axios.post(DataFromApi.addTeacherApi, newTeacher);
       setResponseAddTeacher(response.data);
       alert(response.data); // Show the response from the server in the alert
 
