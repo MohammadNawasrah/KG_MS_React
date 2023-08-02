@@ -17,6 +17,7 @@ import AdminPanel from "./page/admin";
 import AddStudent from "./page/addStudent";
 import ShowStudent from "./page/showStudent";
 import AddTeacher from "./page/addTeacher";
+import Test from "./test/test";
 
 // const root=ReactDOM.create
 ReactDOM.render(
@@ -29,6 +30,7 @@ ReactDOM.render(
       <Route path={addStudentPage} element={<AddStudent />} />
       <Route path={showStudentPage} element={<ShowStudent />} />
       <Route path={addTeacher} element={<AddTeacher />} />
+      <Route path={"/test"} element={<Test />} />
     </Routes>
   </Router>,
   document.getElementById("root")

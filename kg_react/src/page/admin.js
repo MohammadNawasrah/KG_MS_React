@@ -1,113 +1,52 @@
 import React from "react";
 import "../static/css/admin.css";
 import Navbar from "../widget/navbar";
-
+import addStudentImg from "../static/img/addStudent.png";
+import showStudentData from "../static/img/showStudentData.png";
+import addTeacherData from "../static/img/addTeacher.png";
+import setting from "../static/img/setting.png";
 import {
   addStudentPage,
   addTeacher,
   adminPanel,
   showStudentPage,
-  studentDistributionApi,
 } from "../core/data/static/staticData";
-import handleFileUpload from "../core/functions/handleFileUpload";
-import axios from "axios";
 import controllNav from "../core/functions/controllerNav";
 import checkSession from "../core/functions/checkSession";
+import Test from "../test/test";
 const AdminPanel = () => {
   const pageName = adminPanel;
   const filterLinks = controllNav(pageName);
   const linksNames = filterLinks.linkNames;
   const linkURLs = filterLinks.linkURLs;
   const isLogin = checkSession();
-  const handleAddStudentClick = () => {
-    window.location.href = addStudentPage;
-  };
-  const handleShowStudentClick = () => {
-    window.location.href = showStudentPage;
-  };
-  const handleStudentDistribution = async event => {
-    await axios.post(studentDistributionApi);
-  };
-  const handleAddTeacher = async event => {
-    window.location.href = addTeacher;
-  };
+
   return isLogin ? (
     <div>
       <React.Fragment>
         <Navbar linkNames={linksNames} linkUrls={linkURLs} />
       </React.Fragment>
-      <div className="container">
-        <div className="card mb-3" id="card">
-          <div className="card-body">
-            <div className="d-flex flex-column flex-lg-row">
-              <div id="row">
-                <input
-                  type="file"
-                  className="form-control"
-                  id="stdEXL"
-                  onChange={handleFileUpload}
-                />
-                <button type="button" className="btn" id="add">
-                  رفع ملف الطلاب
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="card mb-3" id="card">
-          <div className="card-body">
-            <button
-              type="button"
-              onClick={handleAddStudentClick}
-              className="btn"
-              id="add"
-            >
-              add student
-            </button>
-          </div>
-        </div>
-        <div className="card mb-3" id="card">
-          <div className="card-body">
-            <div className="d-flex flex-column flex-lg-row">
-              <button
-                type="button"
-                onClick={handleShowStudentClick}
-                className="btn"
-                id="add"
-              >
-                show student
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="card mb-3" id="card">
-          <div className="card-body">
-            <div className="d-flex flex-column flex-lg-row">
-              <button
-                type="button"
-                onClick={handleStudentDistribution}
-                className="btn"
-                id="add"
-              >
-                توزيع الطلاب
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="card mb-3" id="card">
-        <div className="card-body">
-          <div className="d-flex flex-column flex-lg-row">
-            <button
-              type="button"
-              onClick={handleAddTeacher}
-              className="btn btn-success"
-              id="add"
-            >
-              add teacher
-            </button>
-          </div>
-        </div>
+      <div className="cards">
+        <Test
+          imgUrl={addStudentImg}
+          textCommint={"اضافة طالب"}
+          goUrl={addStudentPage}
+        />
+        <Test
+          imgUrl={showStudentData}
+          textCommint={"معلومات الطلاب"}
+          goUrl={showStudentPage}
+        />
+        <Test
+          imgUrl={addTeacherData}
+          textCommint={"اضافة معلم"}
+          goUrl={addTeacher}
+        />
+        <Test
+          imgUrl={setting}
+          textCommint={"اعدادات المدير"}
+          goUrl={addTeacher}
+        />
       </div>
     </div>
   ) : (
