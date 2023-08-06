@@ -3,7 +3,7 @@ function CustomInput({
   id = "",
   className = "",
   placeholder = "",
-  value = "",
+  value,
   required = "",
   onChange = "",
 }) {

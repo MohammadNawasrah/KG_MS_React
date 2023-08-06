@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "../static/css/Date.css";
-import axiosGet from "../core/functions/axiosGet";
-import { getLimitYears } from "../core/data/static/staticData";
+import DataFromApi from "../core/data/static/dataFromApi";
+import AxiosUtil from "../core/functions/axiosUtil";
 const DateP = ({ onChange }) => {
   const [firstDateD, setFirstDate] = useState("");
   const [endDateD, setEndDate] = useState("");
@@ -15,7 +15,9 @@ const DateP = ({ onChange }) => {
   const daySelectRef = useRef();
   const [yearsFromDatabase, setYearsFromDatabase] = useState([]);
   const fetchYearsFromApi = async () => {
-    setYearsFromDatabase(await axiosGet(getLimitYears, ""));
+    setYearsFromDatabase(
+      await AxiosUtil.axiosGet(DataFromApi.getLimitYears, "")
+    );
   };
   function getAllDaysInMonth(textDate) {
     const datePattern = /^\d{4}-\d{2}-\d{2}$/;

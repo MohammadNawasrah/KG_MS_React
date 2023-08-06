@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from "react";
-import {
-  addStudentApi,
-  addStudentPage,
-  getLimitYears,
-} from "../core/data/static/staticData";
 import Button from "../widget/customButton";
 import controllNav from "../core/functions/controllerNav";
 import Navbar from "../widget/navbar";
-import axiosGet from "../core/functions/axiosGet";
-import axiosPost from "../core/functions/axiosPost";
 import checkSession from "../core/functions/checkSession";
 import DateP from "../widget/dateP";
+import DataFromApi from "../core/data/static/dataFromApi";
+import LinksReact from "../core/data/static/linksReact";
+import AxiosUtil from "../core/functions/axiosUtil";
 
 function AddStudentPage() {
-  const pageName = addStudentPage;
+  const pageName = LinksReact.addStudentPage;
   const filterLinks = controllNav(pageName);
   const linksNames = filterLinks.linkNames;
   const linkURLs = filterLinks.linkURLs;
@@ -33,7 +29,9 @@ function AddStudentPage() {
   }, []);
 
   const fetchYearsFromApi = async () => {
-    setYearsFromDatabase(await axiosGet(getLimitYears, ""));
+    setYearsFromDatabase(
+      await AxiosUtil.axiosGet(DataFromApi.getLimitYears, "")
+    );
   };
   const resetAlldata = () => {
     setStudentName("");
@@ -50,7 +48,7 @@ function AddStudentPage() {
       phoneNumber: phoneNumber,
       phoneNumberSecond: SecondPhoneNumber,
       nid: nId,
-      comments: comments,
+      commints: comments,
     };
     return formData;
   };
@@ -60,7 +58,10 @@ function AddStudentPage() {
       alert("يرجى اضافة تاريخ الميلاد");
       return;
     }
-    const response = await axiosPost(addStudentApi, getFormData());
+    const response = await AxiosUtil.axiosPost(
+      DataFromApi.addStudentApi,
+      getFormData()
+    );
     if (response !== "error") {
       console.log(response.date);
       alert("تم حفظ الطالب محمد تمهيدي بنجاح");
@@ -130,7 +131,6 @@ function AddStudentPage() {
             className="row form-control mt-3 text-center"
             placeholder="ملاحظات عن الطالب"
             value={comments}
-            required
             onChange={e => setComments(e.target.value)}
           />
 

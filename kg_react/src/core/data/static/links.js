@@ -1,10 +1,4 @@
-import {
-  addStudentPage,
-  addTeacher,
-  adminPanel,
-  showStudentPage,
-} from "./staticData";
-
+import LinksReact from "./linksReact";
 export const linkNames = [
   "الرئيسيه",
   "اضافة طالب",
@@ -12,8 +6,8 @@ export const linkNames = [
   "اضافة معلم",
 ];
 export const linkURLs = [
-  adminPanel,
-  addStudentPage,
-  showStudentPage,
-  addTeacher,
+  LinksReact.adminPanel,
+  LinksReact.addStudentPage,
+  LinksReact.showStudentPage,
+  LinksReact.addTeacher,
 ];

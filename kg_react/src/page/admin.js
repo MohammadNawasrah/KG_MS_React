@@ -5,17 +5,12 @@ import addStudentImg from "../static/img/addStudent.png";
 import showStudentData from "../static/img/showStudentData.png";
 import addTeacherData from "../static/img/addTeacher.png";
 import setting from "../static/img/setting.png";
-import {
-  addStudentPage,
-  addTeacher,
-  adminPanel,
-  showStudentPage,
-} from "../core/data/static/staticData";
 import controllNav from "../core/functions/controllerNav";
 import checkSession from "../core/functions/checkSession";
 import Test from "../test/test";
+import LinksReact from "../core/data/static/linksReact";
 const AdminPanel = () => {
-  const pageName = adminPanel;
+  const pageName = LinksReact.adminPanel;
   const filterLinks = controllNav(pageName);
   const linksNames = filterLinks.linkNames;
   const linkURLs = filterLinks.linkURLs;
@@ -30,22 +25,22 @@ const AdminPanel = () => {
         <Test
           imgUrl={addStudentImg}
           textCommint={"اضافة طالب"}
-          goUrl={addStudentPage}
+          goUrl={LinksReact.addStudentPage}
         />
         <Test
           imgUrl={showStudentData}
           textCommint={"معلومات الطلاب"}
-          goUrl={showStudentPage}
+          goUrl={LinksReact.showStudentPage}
         />
         <Test
           imgUrl={addTeacherData}
           textCommint={"اضافة معلم"}
-          goUrl={addTeacher}
+          goUrl={LinksReact.addTeacher}
         />
         <Test
           imgUrl={setting}
           textCommint={"اعدادات المدير"}
-          goUrl={addTeacher}
+          goUrl={LinksReact.addTeacher}
         />
       </div>
     </div>

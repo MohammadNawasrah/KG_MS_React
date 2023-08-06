@@ -1,20 +1,60 @@
-#ExportExel {
-    width: 200px;
-
-    margin-top: 15px;
-    margin-left: 550px;
-    /* margin-right: 50%; */
+:root {
+  --onHoverColor: silver;
+  --borderTableColor: black;
+}
+.buttonStudentName {
+  border: var(--borderTableColor) solid 1px;
+  cursor: pointer;
+  text-align: start;
+}
+.buttonStudentName:hover {
+  background-color: var(--onHoverColor);
 }
 
-#ExportExel:hover {
-    background-color: green;
+.tds {
+  border: var(--borderTableColor) solid 1px;
 }
-
-@media only screen and (max-width:900px) {
-    #ExportExel {
-        margin-left: 290px;
-    }
-
+.SelectButton {
+  margin-top: 4%;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
 }
-
-@media only screen and (min-width:508px) {}
+.form-select {
+  width: 300px;
+  justify-self: center;
+}
+.form-select {
+  width: 300px;
+  justify-self: center;
+}
+.form-select:hover {
+  background-color: var(--onHoverColor);
+}
+.excelB {
+  border: var(--borderTableColor) solid 1px;
+  width: fit-content;
+  height: fit-content;
+  justify-self: right;
+  margin-right: 3%;
+}
+.excelB:hover {
+  background-color: var(--onHoverColor);
+}
+.modalBodyDesign {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2%;
+  margin-top: 2%;
+  justify-content: center;
+}
+.modalBodyDesign input {
+  margin-bottom: 2%;
+}
+.date {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2%;
+}
+.date input {
+  min-width: 20px;
+}
