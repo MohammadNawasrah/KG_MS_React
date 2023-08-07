@@ -1,8 +1,8 @@
 import React from "react";
-import "../static/css/customButton.css";
+import "../static/css/widgetStyle/customButton.css";
 
 const Button = ({ text, typeB, onSubmit, className }) => {
-  const classNames = `btns ${className}`;
+  const classNames = `btn ${className}`;
   return (
     <button type={typeB} className={classNames} onSubmit={onSubmit}>
       {text}

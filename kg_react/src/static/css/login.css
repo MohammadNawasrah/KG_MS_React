@@ -1,109 +1,21 @@
 :root {
-	--logoTextColor-: black;
-	--BorderTopColor-: #ccc;
-	--BorderbuttomColor-: #ccc;
+  --primeryColor: black;
+  --logoWidth: 100px;
+  --logoHeight: 100px;
 }
+.kgLogo {
+  display: grid;
 
-.main-content {
-	width: 50%;
-	border-radius: 20px;
-	box-shadow: 0 5px 5px rgba(0, 0, 0, .4);
-	margin: 5em auto;
-	display: flex;
+  justify-content: center;
 }
-img{
-	border-radius: 100%;
+.formGroup {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 5%;
+  justify-content: center;
+  margin-top: 10px;
 }
-.company__info {
-	background-color: var(--logoTextColor-);
-	border-top-left-radius: 20px;
-	border-bottom-left-radius: 20px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	color: #fff;
-}
-
-h2 {
-	padding-top: 20px;
-}
-
-#login {
-	padding-bottom: 20px;
-	padding-left: 75px;
-}
-
-.fa-android {
-	font-size: 3em;
-}
-
-@media screen and (max-width: 640px) {
-	.main-content {
-		width: 90%;
-	}
-
-	.company__info {
-		display: none;
-	}
-
-	.login_form {
-		border-top-left-radius: 20px;
-		border-bottom-left-radius: 20px;
-
-	}
-}
-
-@media screen and (min-width: 642px) and (max-width:800px) {
-	.main-content {
-		width: 70%;
-	}
-}
-
-.row>h2 {
-	color: var(--logoTextColor-);
-}
-
-.login_form {
-	background-color: #fff;
-	border-top-right-radius: 20px;
-	border-bottom-right-radius: 20px;
-	border-top: 1px solid --BorderTopColor-;
-	border-right: 1px solid --BorderbuttomColor-;
-}
-
-form {
-	padding: 0 2em;
-}
-
-.form__input {
-	width: 100%;
-	border: 0px solid transparent;
-	border-radius: 0;
-	border-bottom: 1px solid #aaa;
-	padding: 1em .5em .5em;
-	padding-left: 2em;
-	outline: none;
-	margin: 1.5em auto;
-	transition: all .5s ease;
-}
-
-.form__input:focus {
-	border-bottom-color: var(--logoTextColor-);
-	box-shadow: 0 0 5px rgba(141, 156, 156, 0.4);
-	border-radius: 4px;
-}
-
-.loginBtn {
-	margin-top: 1.5em;
-	margin-bottom: 1em;
-}
-
-
-
-@media only screen and (max-width: 768px) {
-
-	/* For mobile phones:  */
-	[class*="col-"] {
-		width: 100%;
-	}
+img {
+  width: var(--logoWidth);
+  height: var(--logoHeight);
 }
