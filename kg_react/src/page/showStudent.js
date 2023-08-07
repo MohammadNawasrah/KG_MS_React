@@ -278,7 +278,7 @@ function ShowStudents() {
           placeholder={selectedStudent.commints}
           onChange={handleInputChange}
         />
-        <select>{generateTeacherOptions()}</select>
+        <select>{generateTeacherOptions(true)}</select>
       </div>
     );
   }
@@ -287,7 +287,7 @@ function ShowStudents() {
       <Navbar linkNames={linksNames} linkUrls={linkURLs} />
       <div className="SelectButton">
         <select className="form-select" onChange={handleTeacherSelectChange}>
-          {generateTeacherOptions()}
+          {generateTeacherOptions(false)}
         </select>
         <button
           className="btn excelB"

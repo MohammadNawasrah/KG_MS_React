@@ -1,0 +1,21 @@
+:root {
+  --primeColor: white;
+  --hoverColor: #ccc;
+  --borderColor: #807b7bf8;
+  --secondColor: black;
+  --borderRedius: 30px;
+  --heightButton: 40px;
+}
+.btn {
+  height: var(--heightButton);
+  border-radius: var(--borderRedius);
+  color: var(--secondColor);
+  background-color: var(--primeColor);
+  border: 1px solid var(--borderColor);
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: var(--hoverColor);
+  color: var(--primeColor);
+}

@@ -11,6 +11,7 @@ import ShowStudent from "./page/showStudent";
 import AddTeacher from "./page/addTeacher";
 import Test from "./test/test";
 import LinksReact from "./core/data/static/linksReact";
+import Test2 from "./test/test2";
 
 // const root=ReactDOM.create
 ReactDOM.render(
@@ -23,7 +24,7 @@ ReactDOM.render(
       <Route path={LinksReact.addStudentPage} element={<AddStudent />} />
       <Route path={LinksReact.showStudentPage} element={<ShowStudent />} />
       <Route path={LinksReact.addTeacher} element={<AddTeacher />} />
-      <Route path={"/test"} element={<Test />} />
+      <Route path={"/test"} element={<Test2 />} />
     </Routes>
   </Router>,
   document.getElementById("root")
